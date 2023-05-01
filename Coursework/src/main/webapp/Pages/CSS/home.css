@@ -1,8 +1,13 @@
+
+
 .banner {
     height: 625px;
     position: relative;
     overflow: hidden;
 }
+
+
+
 
 .banner-slider {
     display: flex;

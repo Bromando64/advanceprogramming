@@ -11,10 +11,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./HTML/CSS/scroll-body.css" />
-    <link rel="stylesheet" href="./HTML/CSS/navbar.css">
-    <link rel="stylesheet" href="./HTML/CSS/home.css" />
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="./Pages/CSS/scroll-body.css" />
+    <link rel="stylesheet" type="text/css" href="./Pages/CSS/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./Pages/CSS/home.css" />
+    <style type="text/css">
+		    .no-style {
+		    text-decoration: none;
+		    color: inherit;
+		}
+    </style>
 </head>
 
 <body>
@@ -23,6 +29,7 @@
 	
 	<sql:query var="products" dataSource="${dbConnection}">
     SELECT 
+    	product.productID,
         product.product_name, 
         product.price, 
         GROUP_CONCAT(product_images.image_url) AS urls 
@@ -46,16 +53,16 @@
                         </path>
                     </svg></button>
             </div>
-            <button class="cart-btn">Add to Cart</button>
+            <button class="cart-btn">Go to Cart</button>
         </div>
     </header>
     <div class="banner">
         <div class="banner-slider">
-            <div class="banner-slide" style="background-image: url('./HTML/banner/banner1.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./HTML/banner/banner2.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./HTML/banner/banner3.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./HTML/banner/banner4.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./HTML/banner/banner5.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('./Pages/banner/banner1.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('./Pages/banner/banner2.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('./Pages/banner/banner3.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('./Pages/banner/banner4.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('./Pages/banner/banner5.jpg');"></div>
         </div>
         <div class="banner-text-container">
             <h1>Discover the Latest Trends</h1>
@@ -64,17 +71,19 @@
     <p class="section-title">New Arrivals</p>
     <div class="products">
     <c:forEach var="product" items="${products.rows}">
+    <a href="./Pages/individual.jsp?product_id=${product.productID}" class="no-style">
         <div class="product">
             <div class="product-image-wrapper">
             	<c:set var="imageUrls" value="${fn:split(product.urls, ',')}" />
-                <img class="product-img" src="http://localhost:7070/images/${imageUrls[0]}.jpg" alt="Product 1">
+                <img class="product-img" src="http://localhost:7070/images/${imageUrls[0]}.jpg" alt="Product">
             <c:if test="${not empty imageUrls[1]}">
-                <img class="product-img-hover" src="http://localhost:7070/images/${imageUrls[1]}.jpg" alt="Product 1 Hover">
+                <img class="product-img-hover" src="http://localhost:7070/images/${imageUrls[1]}.jpg" alt="Product Hover">
             </c:if>
             </div>
-            <h2>${product.product_name}</h2>
-            <p>${product.price}</p>
+            <h2 class="no-style">${product.product_name}</h2>
+            <p class="no-style">Rs.${product.price}</p>
         </div>
+    </a>
     </c:forEach>
     </div>
     <footer>
