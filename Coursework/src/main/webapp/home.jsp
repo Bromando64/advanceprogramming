@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix ="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +18,19 @@
 </head>
 
 <body>
+	<sql:setDataSource var="dbConnection" driver="com.mysql.cj.jdbc.Driver" 
+	url = "jdbc:mysql://localhost:3306/coursework" user="root" password=""/>
+	
+	<sql:query var="products" dataSource="${dbConnection}">
+    SELECT 
+        product.product_name, 
+        product.price, 
+        GROUP_CONCAT(product_images.image_url) AS urls 
+    FROM product 
+    JOIN product_images ON product.productId = product_images.productId 
+    WHERE product.productId IN (1, 15, 6, 8) 
+    GROUP BY product.productId
+</sql:query>
     <header>
         <div class="logo">FashionHub</div>
         <nav>
@@ -46,38 +63,19 @@
     </div>
     <p class="section-title">New Arrivals</p>
     <div class="products">
+    <c:forEach var="product" items="${products.rows}">
         <div class="product">
             <div class="product-image-wrapper">
-                <img class="product-img" src="./HTML/products/Product_F 1/Product_F_1_1.jpg" alt="Product 1">
-                <img class="product-img-hover" src="./HTML/products/Product_F 1/Product_F_1_2.jpg" alt="Product 1 Hover">
+            	<c:set var="imageUrls" value="${fn:split(product.urls, ',')}" />
+                <img class="product-img" src="http://localhost:7070/images/${imageUrls[0]}.jpg" alt="Product 1">
+            <c:if test="${not empty imageUrls[1]}">
+                <img class="product-img-hover" src="http://localhost:7070/images/${imageUrls[1]}.jpg" alt="Product 1 Hover">
+            </c:if>
             </div>
-            <h2>Product Name 1</h2>
-            <p>$49.99</p>
+            <h2>${product.product_name}</h2>
+            <p>${product.price}</p>
         </div>
-        <div class="product">
-            <div class="product-image-wrapper">
-                <img class="product-img" src="./HTML/products/Product_M 3/Product_M_3_1.jpg" alt="Product 1">
-                <img class="product-img-hover" src="./HTML/products/Product_M 3/Product_M_3_2.jpg" alt="Product 1 Hover">
-            </div>
-            <h2>Product Name 2</h2>
-            <p>$49.99</p>
-        </div>
-        <div class="product">
-            <div class="product-image-wrapper">
-                <img class="product-img" src="./HTML/products/Product_F 6/Product_F_6_1.jpg" alt="Product 1">
-                <img class="product-img-hover" src="./HTML/products/Product_F 6/Product_F_6_2.jpg" alt="Product 1 Hover">
-            </div>
-            <h2>Product Name 3</h2>
-            <p>$49.99</p>
-        </div>
-        <div class="product">
-            <div class="product-image-wrapper">
-                <img class="product-img" src="./HTML/products/Product_F 8/Product_F_8_1.jpg" alt="Product 1">
-                <img class="product-img-hover" src="./HTML/products/Product_F 8/Product_F_8_2.jpg" alt="Product 1 Hover">
-            </div>
-            <h2>Product Name 4</h2>
-            <p>$49.99</p>
-        </div>
+    </c:forEach>
     </div>
     <footer>
         &copy; 2023 FashionHub. All rights reserved.
