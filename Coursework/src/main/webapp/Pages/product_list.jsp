@@ -56,12 +56,6 @@
 
 <sql:query var="uniqueBrands" dataSource="${dbConnection}">
     SELECT DISTINCT brand FROM product
-    <% if(request.getParameter("category") != null && !request.getParameter("category").isEmpty()) { %>
-        WHERE category = ?
-    <% } %>
-    <c:if test="${not empty category}">
-        <sql:param value="${category}" />
-    </c:if>
 </sql:query>
 
     <header>
@@ -90,12 +84,14 @@
         <div class="filters">
             <h2>Filters</h2>
             <h3>Brand</h3>
+            <form id="filterForm" action="${pageContext.request.contextPath}/ProductFilterServlet" method="GET">
             <div class="filter-options">
             <c:forEach var="brand" items="${uniqueBrands.rows}">
-                <input type="checkbox" id="${brand.brand}" name="${brand.brand}">
+                <input type="checkbox" id="${brand.brand}" name="${brand.brand}" onchange="document.getElementById('filterForm').submit()">
                 <label for="${brand.brand}">${brand.brand}</label><br>
             </c:forEach>
             </div>
+            </form>
         </div>
         <div class="products-container">
         	<div class="sort-container">
@@ -134,11 +130,6 @@
     <footer>
         &copy; 2023 FashionHub. All rights reserved.
     </footer>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/Pages/JS/product_list.js">
-	function submitFilterForm() {
-	    document.getElementById('filterForm').submit();
-	}
-	</script>
 </body>
 
 </html>

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +37,15 @@ public class ProductFilterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String category = request.getParameter("category");
         String searchQuery = request.getParameter("search");
-
+        
+        String selectedBrand = null;
+        for (String brand : request.getParameterMap().keySet()) {
+            if (request.getParameter(brand).equals("on")) {
+                selectedBrand = brand;
+                break;
+            }
+        }
+        
         DbConnection dbConnection = new DbConnection();
 
         Connection connection = dbConnection.getConnection();
@@ -50,6 +59,10 @@ public class ProductFilterServlet extends HttpServlet {
         } else {
             query = "SELECT productID FROM product WHERE category = ? AND product_name LIKE ?";
         }
+        
+        if (selectedBrand != null) {
+        	query = "SELECT productID FROM product WHERE brand = ?";
+        }
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -60,6 +73,10 @@ public class ProductFilterServlet extends HttpServlet {
             } else {
                 preparedStatement.setString(1, category);
                 preparedStatement.setString(2, "%" + searchQuery + "%");
+            }
+            
+            if (selectedBrand != null){
+            	preparedStatement.setString(1, selectedBrand);
             }
 
             ResultSet resultSet = preparedStatement.executeQuery();
