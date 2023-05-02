@@ -3,8 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../CSS/signup.css">
+
 </head>
 <body>
-HELLO
-</body>
+	<div class="card" style="margin-top: 100px;">
+	  <span class="title">Sign Up</span>
+	  <form class="form">
+	  	<div>
+		    <label for="Profile">Upload Profile Picture</label><input placeholder="‎" type="file" id="" name="photo" required="required" value="" >
+		    <br><br>
+	    </div>
+	    <div class="group">
+	    	<div class="firstrow" >
+			    <input placeholder="‎" type="text" required="required" name="firstname">
+			    <label for="firstname">First Name</label>
+		    </div>
+		</div>
+		<div class="group">
+			<div class="firstrow" >
+			    <input placeholder="‎" type="text" required="required" name="lastname">
+			    <label for="lastname">Last Name</label>
+		    </div>
+	    </div>
+	    <div class="group">
+		    <input placeholder="‎" type="text" id="username" name="username" required="required">
+		    <label for="username">Username</label>
+	    </div>
+	    <div class="group">
+		    <input placeholder="‎" type="text" id="phonenumber" name="phonenumber" required="required">
+		    <label for="phonenumber">Phone Number</label>
+	    </div>
+	    <div class="group">
+		    <input placeholder="‎" type="password" id="password" name="password" required="required" value="" >
+		    <label for="password">Password</label>
+	    </div>
+	    <div class="show">
+	    	<input type="checkbox" onclick="showFirst()"><label>   Show Password</label>
+	    </div>
+	    <div class="group">
+		    <input placeholder="‎" type="password" id="repassword" name="repassword" required="required" value="" >
+		    <label for="repassword">Confirm Password</label>
+	    </div>
+	    <div class="show">
+	    	<input type="checkbox" onclick="showSecond()"><label>   Show Password</label>
+	    </div>
+	   	<div class="next">
+	   		<a href="login.html">Login?</a>
+	   	</div>
+	    
+	    <button type="submit">Sign Up</button>
+	  </form>
+	</div>
+	<script>
+		function showFirst() {
+			  var x = document.getElementById("password");
+			  if (x.type === "password") {
+			    x.type = "text";
+			  } else {
+			    x.type = "password";
+			  }
+			}
+		function showSecond() {
+			  var x = document.getElementById("repassword");
+			  if (x.type === "password") {
+			    x.type = "text";
+			  } else {
+			    x.type = "password";
+			  }
+			}
+	</script>
 </html>
