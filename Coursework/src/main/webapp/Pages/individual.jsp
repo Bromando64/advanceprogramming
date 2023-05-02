@@ -11,9 +11,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Detail</title>
-    <link rel="stylesheet" href="./CSS/individual.css">
-    <link rel="stylesheet" href="./CSS/navbar.css">
-    <link rel="stylesheet" href="./CSS/scroll-body.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Pages/CSS/individual.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Pages/CSS/navbar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Pages/CSS/scroll-body.css">
 </head>
 
 <body>
@@ -39,9 +39,9 @@
     <header>
         <div class="logo">FashionHub</div>
         <nav>
-            <a href="#">Home</a>
-            <a href="#">Men</a>
-            <a href="#">Women</a>
+            <a href="${pageContext.request.contextPath}/home.jsp">Home</a>
+            <a href="${pageContext.request.contextPath}/Pages/product_list.jsp?category=Men">Men</a>
+            <a href="${pageContext.request.contextPath}/Pages/product_list.jsp?category=Women">Women</a>
         </nav>
         <div class="right-container">
             <div class="search-container">
@@ -79,7 +79,7 @@
     <footer>
         &copy; 2023 FashionHub. All rights reserved.
     </footer>
-    <script src="./JS/individual.js"></script>
+    <script src="${pageContext.request.contextPath}/Pages/JS/individual.js"></script>
 </body>
 
 </html>
