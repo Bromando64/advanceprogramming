@@ -12,14 +12,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="./Pages/CSS/scroll-body.css" />
-    <link rel="stylesheet" type="text/css" href="./Pages/CSS/navbar.css">
-    <link rel="stylesheet" type="text/css" href="./Pages/CSS/home.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Pages/CSS/scroll-body.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Pages/CSS/navbar.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Pages/CSS/home.css" />
     <style type="text/css">
 		    .no-style {
 		    text-decoration: none;
 		    color: inherit;
-		}
+			}
     </style>
 </head>
 
@@ -31,19 +31,20 @@
     SELECT 
     	product.productID,
         product.product_name, 
-        product.price, 
+        product.price,
+        product.category,
         GROUP_CONCAT(product_images.image_url) AS urls 
     FROM product 
     JOIN product_images ON product.productId = product_images.productId 
     WHERE product.productId IN (1, 15, 6, 8) 
     GROUP BY product.productId
-</sql:query>
+	</sql:query>
     <header>
         <div class="logo">FashionHub</div>
         <nav>
-            <a href="#">Home</a>
-            <a href="#">Men</a>
-            <a href="#">Women</a>
+            <a href="${pageContext.request.contextPath}/home.jsp">Home</a>
+            <a href="${pageContext.request.contextPath}/Pages/product_list.jsp?category=Men">Men</a>
+            <a href="${pageContext.request.contextPath}/Pages/product_list.jsp?category=Women">Women</a>
         </nav>
         <div class="right-container">
             <div class="search-container">
@@ -71,7 +72,7 @@
     <p class="section-title">New Arrivals</p>
     <div class="products">
     <c:forEach var="product" items="${products.rows}">
-    <a href="./Pages/individual.jsp?product_id=${product.productID}" class="no-style">
+    <a href="${pageContext.request.contextPath}/Pages/individual.jsp?product_id=${product.productID}" class="no-style">
         <div class="product">
             <div class="product-image-wrapper">
             	<c:set var="imageUrls" value="${fn:split(product.urls, ',')}" />
@@ -89,7 +90,7 @@
     <footer>
         &copy; 2023 FashionHub. All rights reserved.
     </footer>
-    <script src="./HTML/JS/home.js"></script>
+    <script src="${pageContext.request.contextPath}/Pages/JS/home.js"></script>
 </body>
 
 </html>
