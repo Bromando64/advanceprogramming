@@ -75,9 +75,9 @@
         <div class="product">
             <div class="product-image-wrapper">
             	<c:set var="imageUrls" value="${fn:split(product.urls, ',')}" />
-                <img class="product-img" src="http://localhost:7070/images/${imageUrls[0]}.jpg" alt="Product">
+                <img class="product-img" src="http://localhost:7070/images/${imageUrls[0]}" alt="Product">
             <c:if test="${not empty imageUrls[1]}">
-                <img class="product-img-hover" src="http://localhost:7070/images/${imageUrls[1]}.jpg" alt="Product Hover">
+                <img class="product-img-hover" src="http://localhost:7070/images/${imageUrls[1]}" alt="Product Hover">
             </c:if>
             </div>
             <h2 class="no-style">${product.product_name}</h2>
