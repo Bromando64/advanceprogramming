@@ -5,6 +5,13 @@
 	margin:0;
 }
 
+label {
+  font-size: 14px;
+  color: black;
+}
+
+
+
 
 .card {
 	
@@ -21,6 +28,7 @@
       0px 59px 36px rgba(0, 0, 0, 0.05), 0px 26px 26px rgba(0, 0, 0, 0.09),
       0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
     border-radius: 11px;
+  opacity: 0.9;
 }
 
 .title {
