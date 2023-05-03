@@ -12,5 +12,9 @@ public class MyConstants {
 	//Image Config
 	public static final String IMAGE_DIR = "xampp\\tomcat\\webapps\\images\\";
 	public static final String IMAGE_DIR_SAVE_PATH = "C:" + File.separator + IMAGE_DIR;
-
+	//Start Region: Query
+	public static final String CHECK_LOGIN_INFO = "Select email, password " +"From user Where email = ? And password = ?";
+	public static final String GET_ALL_INFO = "Select*FROM user";
+	public static final String GEt_ALL_INFO_BY_ID = "Select*From user" + "WHERE id=?";
+	// End Region: Query
 }

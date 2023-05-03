@@ -1,35 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../CSS/signup.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Pages/CSS/signup.css" />
 
 </head>
-<body style="background-image: url('../Images/background.png'); opacity: 1">
+<body style="background-image:url('${pageContext.request.contextPath}/Pages/Images/background.png')">
 
 	<div class="card" style="margin-top: 100px;">
 	  <span class="title">Sign Up</span>
 	  <form class="form">
 	    <div class="group">
-	    	<div class="firstrow" >
 			    <input placeholder="‎" type="text" required="required" name="firstname">
 			    <label for="firstname">First Name</label>
-		    </div>
 		</div>
 		<div class="group">
-			<div class="firstrow" >
 			    <input placeholder="‎" type="text" required="required" name="lastname">
 			    <label for="lastname">Last Name</label>
-		    </div>
 	    </div>
 	    <div class="group">
-		    <input placeholder="‎" type="text" id="username" name="username" required="required">
-		    <label for="username">Username</label>
+		    <input placeholder="‎" type="text" id="address" name="address" required="required">
+		    <label for="Address">Address</label>
 	    </div>
 	    <div class="group">
 		    <input placeholder="‎" type="text" id="phonenumber" name="phonenumber" required="required">
 		    <label for="phonenumber">Phone Number</label>
+	    </div>
+	    <div class="group">
+			    <input placeholder="‎" type="email" required="required" name="email">
+			    <label for="email">Email</label>
 	    </div>
 	    <div class="group">
 		    <input placeholder="‎" type="password" id="password" name="password" required="required" value="" >
@@ -38,15 +40,9 @@
 	    <div class="show">
 	    	<input type="checkbox" onclick="showFirst()"><label>   Show Password</label>
 	    </div>
-	    <div class="group">
-		    <input placeholder="‎" type="password" id="repassword" name="repassword" required="required" value="" >
-		    <label for="repassword">Confirm Password</label>
-	    </div>
-	    <div class="show">
-	    	<input type="checkbox" onclick="showSecond()"><label>   Show Password</label>
-	    </div>
+	    
 	   	<div class="next">
-	   		<a href="login.html">Login?</a>
+	   		<a href="${pageContext.request.contextPath}/login.jsp">Login?</a>
 	   	</div>
 	    
 	    <button type="submit">Sign Up</button>
@@ -62,13 +58,6 @@
 			    x.type = "password";
 			  }
 			}
-		function showSecond() {
-			  var x = document.getElementById("repassword");
-			  if (x.type === "password") {
-			    x.type = "text";
-			  } else {
-			    x.type = "password";
-			  }
-			}
+		
 	</script>
 </html>

@@ -19,4 +19,11 @@ public class DbConnection {
 			return null;
 		}
 	}
+
+	public Boolean isUserRegistered(String checkLoginInfo, String email, String pass) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }
