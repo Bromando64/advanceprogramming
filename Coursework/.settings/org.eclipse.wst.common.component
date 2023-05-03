@@ -6,6 +6,7 @@
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+
         <dependent-module archiveName="mysql-connector-j-8.0.32.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/downloads/mysql-connector-j-8.0.32/mysql-connector-j-8.0.32/mysql-connector-j-8.0.32.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -15,6 +16,7 @@
         <dependent-module archiveName="taglibs-standard-impl-1.2.5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/downloads/taglibs1.2.5_76f19f4d-f6b0-439b-9686-8d63ecdb31e4_93445_/taglibs-standard-impl-1.2.5.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+
                 		
         
         <property name="context-root" value="Coursework"/>
