@@ -45,6 +45,7 @@
             <a href="${pageContext.request.contextPath}/home.jsp">Home</a>
             <a href="${pageContext.request.contextPath}/Pages/product_list.jsp?category=Men">Men</a>
             <a href="${pageContext.request.contextPath}/Pages/product_list.jsp?category=Women">Women</a>
+                        <a href="${pageContext.request.contextPath}/Pages/product_list.jsp">All Products</a>
         </nav>
         <div class="right-container">
             <div class="search-container">
