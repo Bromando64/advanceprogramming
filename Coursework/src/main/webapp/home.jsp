@@ -4,6 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix ="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@page import="controller.statemanagement.SessionManage"%>
+
+<%! SessionManage mySession = new SessionManage(); %>
+<% String mainPath = request.getContextPath(); %>
+<% String email = (String) session.getAttribute("email");%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,6 +61,22 @@
                     </svg></button>
             </div>
             <button class="cart-btn">Go to Cart</button>
+   	    	<form action="
+    				<%if(!mySession.checkUser(email)){
+    					out.print(mainPath);%>/login.jsp<%
+   					} 
+    				else { 
+    					out.print(mainPath);%>/LogoutServlet<%
+   					}%>"
+	    		method="post">
+	  			<input type="submit" value="
+	    			<%if(mySession.checkUser(email)){%>
+			    		Logout
+			   		<%}else{%>
+			    		Login
+			   		<%}%>
+		   		"/>
+	    	</form>
         </div>
     </header>
     <div class="banner">
