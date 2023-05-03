@@ -8,10 +8,13 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Pages/CSS/login.css" />
 </head>
 <body style="background-image:url('${pageContext.request.contextPath}/Pages/Images/background.png')">
-	
+	<% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+	<% if(errorMessage !=null) {%>
+		<div class="error-message"><%=errorMessage %></div>
+	<%} %>
 	<div class="card" style="margin-top: 100px;">
 	  <span class="title">Login</span>
-	  <form class="form" id="filterForm" action="${pageContext.request.contextPath}/LoginServlet" method="Post">
+	  <form class="form" id="submitForm" action="${pageContext.request.contextPath}/LoginServlet" method="Post">
 	    
 	    <div class="group">
 		    <input placeholder="‎" type="email" id="email" name="email" required="required">
@@ -19,7 +22,7 @@
 	    </div>
 		
 	    <div class="group">
-		    <input placeholder="‎" type="password" id="password" name="phonenumber" required="required" value="" >
+		    <input placeholder="‎" type="password" id="password" name="password" required="required"  >
 		    <label for="phonenumber">Password</label>
 	    </div>
 	    <div class="show">

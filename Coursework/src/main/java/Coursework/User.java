@@ -2,8 +2,8 @@ package Coursework;
 
 public class User {
 	
-	private String firstname, lastname, username,password;
-	private long phone;
+	private String firstname, lastname, address, email,password;
+	private long phonenumber;
 	
 	public String getFirstname()
 	{
@@ -21,13 +21,21 @@ public class User {
 	{
 		this.lastname=lastname;
 	}
-	public String getUsername()
+	public String getAddress()
 	{
-		return username;
+		return address;
 	}
-	public void setUsername()
+	public void setAddress()
 	{
-		this.username=username;
+		this.address=address;
+	}
+	public String getEmail()
+	{
+		return email;
+	}
+	public void setEmail()
+	{
+		this.email=email;
 	}
 	public String getPassword()
 	{
@@ -37,12 +45,12 @@ public class User {
 	{
 		this.password=password;
 	}
-	public long phone()
+	public long getPhonenumber()
 	{
-		return phone;
+		return phonenumber;
 	}
-	public void setPhone()
+	public void setPhonenuber()
 	{
-		this.phone=phone;
+		this.phonenumber=phonenumber;
 	}
 }

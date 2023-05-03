@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="controller.dbconnection.DbConnection"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +16,7 @@
 
 	<div class="card" style="margin-top: 100px;">
 	  <span class="title">Sign Up</span>
-	  <form class="form">
+	  <form class="form" action="">
 	    <div class="group">
 			    <input placeholder="‎" type="text" required="required" name="firstname">
 			    <label for="firstname">First Name</label>
@@ -48,6 +52,34 @@
 	    <button type="submit">Sign Up</button>
 	  </form>
 	</div>
+	<jsp:useBean id="user" class="Coursework.User" scope="page"/>
+	<jsp:setProperty property="" name="user"/>
+	<%
+		Connection con = DbConnection.getConnection();
+		String query = "Insert into user(first_name,last_name,address,phonenumber,email,password)"
+				+"values(?,?,?,?,?,?)";
+		PreparedStatement st = con.prepareStatement(query);
+		st.setString(1,user.getFirstname());
+		st.setString(2,user.getLastname());
+		st.setString(3,user.getAddress());
+		st.setLong(4,user.getPhonenumber());
+		st.setString(5,user.getEmail());
+		st.setString(6,user.getPassword());
+		if(result >0)
+		{
+			
+		}
+		else
+		{
+			
+		}
+		
+
+
+		
+		
+	
+	%>
 </body>
 	<script>
 		function showFirst() {
