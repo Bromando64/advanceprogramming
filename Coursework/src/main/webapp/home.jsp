@@ -60,11 +60,11 @@
     </header>
     <div class="banner">
         <div class="banner-slider">
-            <div class="banner-slide" style="background-image: url('./Pages/banner/banner1.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./Pages/banner/banner2.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./Pages/banner/banner3.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./Pages/banner/banner4.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./Pages/banner/banner5.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('${pageContext.request.contextPath}/Pages/banner/banner1.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('${pageContext.request.contextPath}/Pages/banner/banner2.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('${pageContext.request.contextPath}/Pages/banner/banner3.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('${pageContext.request.contextPath}/Pages/banner/banner4.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('${pageContext.request.contextPath}/Pages/banner/banner5.jpg');"></div>
         </div>
         <div class="banner-text-container">
             <h1>Discover the Latest Trends</h1>
