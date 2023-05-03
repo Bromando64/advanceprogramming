@@ -20,6 +20,10 @@
 
 <body>
 	<c:set var="category" value="${param.category}"/>
+	<c:set var="sort" value="${param.sort}"/>
+	<c:set var="popularity" value="popularity"/>
+	<c:set var="price-asc" value="price-asc"/>
+	<c:set var="price-desc" value="price-desc"/>
 	<sql:setDataSource var="dbConnection" driver="com.mysql.cj.jdbc.Driver" 
 	url = "jdbc:mysql://localhost:3306/coursework" user="root" password=""/>
 	<sql:query var="products" dataSource="${dbConnection}">
@@ -49,6 +53,17 @@
 		    <% } %>
 		<% } %>
 	    GROUP BY product.productId
+	    <c:choose>
+	    	<c:when test="${sort == 'popularity'}">
+	    		ORDER BY product.sold DESC
+	    	</c:when>
+	    	<c:when test="${sort == 'price-asc'}">
+	    		ORDER BY product.price ASC
+	    	</c:when>
+	    	<c:when test="${sort == 'price-desc'}">
+	    		ORDER BY product.price DESC
+	    	</c:when>
+	    </c:choose>
 	    <c:if test="${not empty category}">
 	        <sql:param value="${category}" />
 	    </c:if>
@@ -95,14 +110,18 @@
         </div>
         <div class="products-container">
         	<div class="sort-container">
+        	<form id="sortForm" action="${pageContext.request.contextPath}/Pages/product_list.jsp" method="GET">
+	       	    <input type="hidden" name="category" value="${category}">
             	<label for="sort">Sort by:</label>
             	<div class="select-container">
-                	<select name="sort" id="sort">
+                	<select name="sort" id="sort" onchange="document.getElementById('sortForm').submit()">
+	                    <option value="">---------</option>
 	                    <option value="popularity">Popularity</option>
-	                    <option value="price-asc">Price: Low to High</option>
+	                    <option value="price-asc" >Price: Low to High</option>
 	                    <option value="price-desc">Price: High to Low</option>
                 	</select>
             	</div>
+            </form>
         	</div>
 
             <div class="products-grid">

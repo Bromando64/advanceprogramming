@@ -37,6 +37,7 @@ public class ProductFilterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String category = request.getParameter("category");
         String searchQuery = request.getParameter("search");
+        String sort = request.getParameter("sort");
         
         String selectedBrand = null;
         for (String brand : request.getParameterMap().keySet()) {
@@ -51,7 +52,7 @@ public class ProductFilterServlet extends HttpServlet {
         Connection connection = dbConnection.getConnection();
 
         List<Integer> productIds = new ArrayList<>();
-
+        
         // Check if category is empty or null and adjust the query accordingly
         String query;
         if (category == null || category.isEmpty()) {
@@ -66,16 +67,17 @@ public class ProductFilterServlet extends HttpServlet {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            
             // Set the PreparedStatement parameters based on whether the category is empty or null
-            if (category == null || category.isEmpty()) {
+            
+            
+            if (category == null || category.isEmpty() && sort == null) {
                 preparedStatement.setString(1, "%" + searchQuery + "%");
             } else {
                 preparedStatement.setString(1, category);
                 preparedStatement.setString(2, "%" + searchQuery + "%");
             }
             
-            if (selectedBrand != null){
+            if (selectedBrand != null ){
             	preparedStatement.setString(1, selectedBrand);
             }
 
