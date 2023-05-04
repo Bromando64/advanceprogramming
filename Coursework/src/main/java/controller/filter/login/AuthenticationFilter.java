@@ -37,12 +37,16 @@ public class AuthenticationFilter implements Filter{
 		boolean isLoginJsp = uri.endsWith("login.jsp");
 		boolean isLoginServlet = uri.endsWith("LoginServlet");
 		boolean isLogoutServlet = uri.endsWith("LogoutServlet");
+        boolean isHomeJsp = uri.endsWith("home.jsp");
+        boolean isProductListJsp = uri.contains("product_list.jsp");
+        boolean isProductFilterServlet = uri.contains("ProductFilterServlet");
+        
 		this.context.log("Requested Resource::" + uri);
 		
 		HttpSession session = req.getSession(false);
 		boolean loggedIn = session != null && session.getAttribute("email") != null;
 		
-		if (!loggedIn && !(isLoginJsp || isLoginServlet) && !uri.contains("css")&& !uri.contains("png")) {
+		if (!loggedIn && !(isLoginJsp || isLoginServlet  || isHomeJsp || isProductListJsp|| isProductFilterServlet) && !uri.contains("css")&& !uri.contains("png") && !uri.contains("jpg")) {
 			res.sendRedirect(req.getContextPath()+"/login.jsp");
 		}else if(loggedIn && isLoginJsp) {
 			res.sendRedirect(req.getContextPath()+"/home.jsp");
