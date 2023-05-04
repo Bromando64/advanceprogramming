@@ -6,18 +6,17 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-
-	<classpathentry kind="lib" path="D:/downloads/mysql-connector-j-8.0.32/mysql-connector-j-8.0.32/mysql-connector-j-8.0.32.jar">
+	<classpathentry kind="lib" path="C:/Users/shush/Downloads/mysql-connector-j-8.0.32/mysql-connector-j-8.0.32/mysql-connector-j-8.0.32.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/downloads/taglibs1.2.5_76f19f4d-f6b0-439b-9686-8d63ecdb31e4_93445_/taglibs-standard-spec-1.2.5.jar">
+	<classpathentry kind="lib" path="C:/Users/shush/Downloads/taglibs1.2.5_76f19f4d-f6b0-439b-9686-8d63ecdb31e4_93445_/taglibs-standard-spec-1.2.5.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/downloads/taglibs1.2.5_76f19f4d-f6b0-439b-9686-8d63ecdb31e4_93445_/taglibs-standard-impl-1.2.5.jar">
+	<classpathentry kind="lib" path="C:/Users/shush/Downloads/taglibs1.2.5_76f19f4d-f6b0-439b-9686-8d63ecdb31e4_93445_/taglibs-standard-impl-1.2.5.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -27,6 +26,5 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-
 	<classpathentry kind="output" path="bin"/>
 </classpath>
