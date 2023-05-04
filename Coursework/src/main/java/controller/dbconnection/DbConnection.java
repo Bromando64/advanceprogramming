@@ -37,18 +37,19 @@ public class DbConnection {
 		}
 	}
 	
-
 	public Boolean isUserRegistered(String query, String email, String pass) {
 		Connection dbConnection = getConnection();
 		if(dbConnection!=null) {
 			try {
 				PreparedStatement statement = dbConnection.prepareStatement(query);
+
 				statement.setString(1, email);
 				statement.setString(2, pass);
 				ResultSet result = statement.executeQuery();
 				if(result.next()) return true;
 				else return false;
 			}catch (SQLException e)
+
 			{
 				return null;
 			}
@@ -58,6 +59,4 @@ public class DbConnection {
 			return null;
 		}
 	}
-
-
 }
