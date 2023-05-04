@@ -1,0 +1,240 @@
+@charset "ISO-8859-1";
+header 
+{
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+}
+
+.logo 
+{
+    font-size: 24px;
+    cursor: default;
+}
+
+nav 
+{
+    display: flex;
+}
+
+nav a 
+{
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    padding: 8px 12px;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+}
+
+nav a:hover 
+{
+    background-color: #555;
+}
+
+.right-container 
+{
+    display: flex;
+    align-items: center;
+}
+
+.search-container 
+{
+    display: flex;
+    align-items: center;
+    background-color: #444;
+    border-radius: 25px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+
+.search-input 
+{
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    width: 180px;
+    font-size: 16px;
+    outline: none;
+    border-radius: 25px;
+}
+
+.search-btn 
+{
+    background-color: #f8b500;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    padding: 5px 15px;
+    border-radius: 25px;
+    transition: background-color 0.2s;
+}
+
+.search-btn:hover 
+{
+    background-color: #f9c830;
+}
+
+.cart-btn 
+{
+    background-color: #f8b500;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    padding: 5px 15px;
+    border-radius: 25px;
+    transition: background-color 0.2s;
+}
+
+.cart-btn:hover 
+{
+    background-color: #f9c830;
+}
+
+
+
+footer 
+{
+    position: fixed;
+  	bottom: 0;
+  	left: 0;
+  	background-color: #333;
+  	color: white;
+  	text-align: center;
+  	padding: 20px;
+    width: 100%
+ 
+}
+
+/* styling the marquee tag*/
+.move 
+{
+    font-family: Segoe Script;
+    background-color: #f8b500; 
+  	
+
+ }
+
+/* styling the header */         
+.cart_section
+{
+	font-family: Segoe Script;
+	background-color: white;
+  	height: 300px;
+  	text-align: center;
+}
+
+
+/* setting margin of all elements to 35% with the text in center*/
+.buttons 
+{
+    margin: 35%;
+    text-align: center;
+}
+
+/* defining the sytles of the button*/
+.btn-hover 
+{
+    width: 200px;
+    font-size: 21px;
+    font-weight: 480;
+    color: white;
+    cursor: pointer;
+    height: 55px;
+    text-align:center;
+    border: none;
+    /*sets the size of elements background image */
+    background-size: 200% 100%;
+
+	/* defining the roundness of the button*/
+    border-radius: 30px; 
+}
+
+/* describing the hover effect*/
+.btn-hover:hover 
+{
+	/* changing background position while hovering */
+    background-position: 100% 0%;
+}
+
+/* describing the hover effect in the button */
+.btn-hover 
+{
+	font-family: Segoe Script;
+	color: black;
+	/* changing color from yellow to orange shade */
+    background-image: linear-gradient(to right, #ff8c00, #f5ce62 ,#e85a19);
+    /* providing 3D apperence */
+    box-shadow: 2px 2px 10px rgba(255, 255, 0.25, 0.75);
+}
+
+table 
+{
+/* removing space between cells */
+    border-collapse: collapse;
+    width: 50%;
+    text-align: center;
+    font-family: Segoe Script;
+    margin-left: auto;
+  	margin-right: auto;
+}
+
+/* describing table header cells and table data cells*/     
+th, td 
+{
+    font-family: Segoe Script;
+    text-align: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f2f2f2;
+}
+
+/* width for quantity input box*/     
+.quantity-input 
+{
+    width: 50px;
+}
+
+/* describing the remove button for the cart list */   
+.remove-button 
+{
+    width: 100px;
+   	font-size: 21px;
+   	font-weight: 400;
+    color: black;
+	cursor: pointer;
+	height: 38px;
+	font-family: Segoe Script;
+	text-align:center;
+	font-size: 16px;
+	border: none;
+	/*sets the size of elements background image */
+	background-size: 200% 100%;
+	background-image: linear-gradient(to right,#e85a19, #ff8c00, #f5ce62 );
+	
+	/* defining the roundness of the button*/
+	border-radius: 30px; 
+	    
+	/* changing background position while hovering */
+    background-position: 100% 0%;
+}
+
+/* describing the hover effect in the button*/  
+.remove-button:hover 
+{
+    font-family: Segoe Script;
+	color: black;
+	/* changing color from yellow to orange shade */
+	background-image: linear-gradient(to right, #ff8c00, #f5ce62 ,#e85a19);
+	/* providing 3D apperence */
+	box-shadow: 2px 2px 10px rgba(255, 255, 0.25, 0.75);
+}

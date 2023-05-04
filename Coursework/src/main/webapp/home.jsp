@@ -4,6 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix ="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@page import="controller.statemanagement.SessionManage"%>
+
+<%! SessionManage mySession = new SessionManage(); %>
+<% String mainPath = request.getContextPath(); %>
+<% String email = (String) session.getAttribute("email");%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,22 +54,37 @@
         </nav>
         <div class="right-container">
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search">
-                <button class="search-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512" id="search">
-                        <path d="M448.3 424.7L335 311.3c20.8-26 33.3-59.1 33.3-95.1 0-84.1-68.1-152.2-152-152.2-84 0-152 68.2-152 152.2s68.1 152.2 152 152.2c36.2 0 69.4-12.7 95.5-33.8L425 448l23.3-23.3zM120.1 312.6c-25.7-25.7-39.8-59.9-39.8-96.3s14.2-70.6 39.8-96.3 59.9-40 96.2-40c36.3 0 70.5 14.2 96.2 39.9s39.8 59.9 39.8 96.3-14.2 70.6-39.8 96.3c-25.7 25.7-59.9 39.9-96.2 39.9-36.3.1-70.5-14.1-96.2-39.8z">
-                        </path>
+                <form action="${pageContext.request.contextPath}/ProductFilterServlet" method="get">
+            	<input type="hidden" name="category" value="${category}">
+                <input type="text" class="search-input" placeholder="Search" name="search">
+                <button type="submit" class="search-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        viewBox="0 0 512 512" id="search">
+                        <path d="M448.3 424.7L335 311.3c20.8-26 33.3-59.1 33.3-95.1 0-84.1-68.1-152.2-152-152.2-84 0-152 68.2-152 152.2s68.1 152.2 152 152.2c36.2 0 69.4-12.7 95.5-33.8L425 448l23.3-23.3zM120.1 312.6c-25.7-25.7-39.8-59.9-39.8-96.3s14.2-70.6 39.8-96.3 59.9-40 96.2-40c36.3 0 70.5 14.2 96.2 39.9s39.8 59.9 39.8 96.3-14.2 70.6-39.8 96.3c-25.7 25.7-59.9 39.9-96.2 39.9-36.3.1-70.5-14.1-96.2-39.8z"></path>
                     </svg></button>
+                </form>
             </div>
-            <button class="cart-btn">Go to Cart</button>
+            <%if(mySession.checkUser(email)){%>
+        		<button class="cart-btn">Go to Cart</button>
+    		<%}%>
+   	    	<form action="
+    				<%if(!mySession.checkUser(email)){
+    					out.print(mainPath);%>/login.jsp<%
+   					} 
+    				else { 
+    					out.print(mainPath);%>/LogoutServlet<%
+   					}%>"
+	    		method="post">
+	  			<input type="submit" value="<%if(mySession.checkUser(email)){%> Logout <%}else{%> Login <%}%>"/>
+	    	</form>
         </div>
     </header>
     <div class="banner">
         <div class="banner-slider">
-            <div class="banner-slide" style="background-image: url('./Pages/banner/banner1.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./Pages/banner/banner2.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./Pages/banner/banner3.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./Pages/banner/banner4.jpg');"></div>
-            <div class="banner-slide" style="background-image: url('./Pages/banner/banner5.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('${pageContext.request.contextPath}/Pages/banner/banner1.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('${pageContext.request.contextPath}/Pages/banner/banner2.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('${pageContext.request.contextPath}/Pages/banner/banner3.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('${pageContext.request.contextPath}/Pages/banner/banner4.jpg');"></div>
+            <div class="banner-slide" style="background-image: url('${pageContext.request.contextPath}/Pages/banner/banner5.jpg');"></div>
         </div>
         <div class="banner-text-container">
             <h1>Discover the Latest Trends</h1>

@@ -1,21 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Sign Up</title>
-<link rel="stylesheet" type="text/css" href="Pages/CSS/signup.css" />
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Pages/CSS/signup.css" />
 </head>
-<body style="background-image:url('Pages/Images/background.png')">
+<body style="background-image:url('${pageContext.request.contextPath}/Pages/Images/background.png')">
 
 	<div class="card" style="margin-top: 40px;">
 	  <span class="title">Sign Up</span>
-	  <form class="form" action="signup.jsp" method="post">
+	  <form class="form" action="${pageContext.request.contextPath}/UserServlet" method="post" enctype="multipart/form-data">
 	    <div class="group">
-			    <input placeholder="‎" type="text" required="required" name="firstname">
+			    <input placeholder="‎" type="text" required="required" name="firstName">
 			    <label for="firstname">First Name</label>
 		</div>
 		<div class="group">
-			    <input placeholder="‎" type="text" required="required" name="lastname">
+			    <input placeholder="‎" type="text" required="required" name="lastName">
 			    <label for="lastname">Last Name</label>
 	    </div>
 	    <div class="group">
@@ -23,15 +25,7 @@
 		    <label for="address">Address</label>
 	    </div>
 	    <div class="group">
-		    <input placeholder="‎" type="text" id="area" name="area" required="required">
-		    <label for="area">Area</label>
-	    </div>
-	    <div class="group">
-		    <input placeholder="‎" type="text" id="city" name="city" required="required">
-		    <label for="city">City</label>
-	    </div>
-	    <div class="group">
-		    <input placeholder="‎" type="text" id="phonenumber" name="phonenumber" required="required">
+		    <input placeholder="‎" type="text" id="phonenumber" name="phoneNumber" required="required">
 		    <label for="phonenumber">Phone Number</label>
 	    </div>
 	    <div class="group">
@@ -47,7 +41,7 @@
 	    </div>
 	    <div>
 		    <label for="Profile">Upload Profile Picture</label>
-		    <input placeholder="‎" type="file" id="" name="photo" required="required" value="" >
+		    <input placeholder="‎" type="file" id="image" name="image" required="required" value="" >
 		<br><br>
 	    </div>
 	    
