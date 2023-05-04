@@ -74,7 +74,7 @@
     					out.print(mainPath);%>/LogoutServlet<%
    					}%>"
 	    		method="post">
-	  			<input type="submit" value="<%if(mySession.checkUser(email)){%> Logout <%}else{%> Login <%}%>"/>
+	  			<input class="cart-btn" type="submit" value="<%if(mySession.checkUser(email)){%> Logout <%}else{%> Login <%}%>"/>
 	    	</form>
         </div>
     </header>
