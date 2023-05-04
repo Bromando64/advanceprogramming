@@ -5,6 +5,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ page import="java.util.List" %>
+<%@page import="controller.statemanagement.SessionManage"%>
+
+<%! SessionManage mySession = new SessionManage(); %>
+<% String mainPath = request.getContextPath(); %>
+<% String email = (String) session.getAttribute("email");%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,7 +97,19 @@
                     </svg></button>
                 </form>
             </div>
-            <button class="cart-btn">Go to Cart</button>
+            <%if(mySession.checkUser(email)){%>
+        		<button class="cart-btn">Go to Cart</button>
+    		<%}%>
+   	    	<form action="
+    				<%if(!mySession.checkUser(email)){
+    					out.print(mainPath);%>/login.jsp<%
+   					} 
+    				else { 
+    					out.print(mainPath);%>/LogoutServlet<%
+   					}%>"
+	    		method="post">
+	  			<input type="submit" value="<%if(mySession.checkUser(email)){%> Logout <%}else{%> Login <%}%>"/>
+	    	</form>
         </div>
     </header>
     <main>
@@ -140,7 +157,11 @@
                     <p class="brand">Brand:${product.brand}</p>
                     <p class="quantity">Stock:${product.quantity}</p>
                     <div class="price">Rs.${product.price}</div>
-                    <button class="add-to-cart">Add to Cart</button>
+                    <form action="${pageContext.request.contextPath}/AddToCartServlet" method="POST" class="add-to-cart-form">
+					    <input type="hidden" name="productID" value="${product.productID}">
+					    <input type="hidden" name="quantity" value="1" />
+					    <button type="submit" class="add-to-cart">Add to Cart</button>
+					</form>
                 </div>
             </c:forEach>
             </div>

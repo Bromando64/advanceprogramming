@@ -21,51 +21,42 @@ public class DbConnection {
 			return null;
 		}
 	}
-	public ResultSet selectAllQuery(String query)
-	{
+	
+	public ResultSet selectAllQuery(String query) {
 		Connection dbConnection = getConnection();
-		if(dbConnection != null)
-		{
-			try
-			{
-				PreparedStatement statement =dbConnection.prepareStatement(query);
+		if(dbConnection != null) {
+			try {
+				PreparedStatement statement = dbConnection.prepareStatement(query);
 				ResultSet result = statement.executeQuery();
 				return result;
-			}
-			catch (SQLException e)
-			{
+			} catch (SQLException e) {
 				return null;
 			}
-		}
-		else
-		{
-				return null;
+		}else {
+			return null;
 		}
 	}
-
+	
 	public Boolean isUserRegistered(String query, String email, String pass) {
-		// TODO Auto-generated method stub
 		Connection dbConnection = getConnection();
-		if(dbConnection != null)
-		{
-			try
-			{
-				PreparedStatement statement =dbConnection.prepareStatement(query);
+		if(dbConnection!=null) {
+			try {
+				PreparedStatement statement = dbConnection.prepareStatement(query);
+
 				statement.setString(1, email);
 				statement.setString(2, pass);
 				ResultSet result = statement.executeQuery();
 				if(result.next()) return true;
 				else return false;
-			}
-			catch (SQLException e)
+			}catch (SQLException e)
+
 			{
 				return null;
 			}
 		}
 		else
 		{
-				return null;
+			return null;
 		}
-			
 	}
 }
