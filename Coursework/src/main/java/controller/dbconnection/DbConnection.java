@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.cj.xdevapi.PreparableStatement;
-
 import resources.MyConstants;
 public class DbConnection {
 	public Connection getConnection() {

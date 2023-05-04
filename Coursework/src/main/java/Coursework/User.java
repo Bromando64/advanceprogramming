@@ -1,15 +1,17 @@
 package Coursework;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable{
 	
-	private String firstname, lastname, address, email,password;
+	
+	private String firstname, lastname, address,area ,city, email,password;
 	private long phonenumber;
 	
 	public String getFirstname()
 	{
 		return firstname;
 	}
-	public void setFirstName()
+	public void setFirstName(String firstname)
 	{
 		this.firstname=firstname;
 	}
@@ -17,7 +19,7 @@ public class User {
 	{
 		return lastname;
 	}
-	public void setLastName()
+	public void setLastName(String lastname)
 	{
 		this.lastname=lastname;
 	}
@@ -25,15 +27,31 @@ public class User {
 	{
 		return address;
 	}
-	public void setAddress()
+	public void setAddress(String address)
 	{
 		this.address=address;
+	}
+	public String getArea()
+	{
+		return area;
+	}
+	public void setArea(String area)
+	{
+		this.area=area;
+	}
+	public String getCity()
+	{
+		return city;
+	}
+	public void setCity(String city)
+	{
+		this.city=city;
 	}
 	public String getEmail()
 	{
 		return email;
 	}
-	public void setEmail()
+	public void setEmail(String email)
 	{
 		this.email=email;
 	}
@@ -41,7 +59,7 @@ public class User {
 	{
 		return password;
 	}
-	public void setPassword()
+	public void setPassword(String password)
 	{
 		this.password=password;
 	}
@@ -49,7 +67,7 @@ public class User {
 	{
 		return phonenumber;
 	}
-	public void setPhonenuber()
+	public void setPhonenuber(long phonenumber)
 	{
 		this.phonenumber=phonenumber;
 	}
