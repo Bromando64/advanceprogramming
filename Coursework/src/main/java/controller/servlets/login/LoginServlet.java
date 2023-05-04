@@ -39,6 +39,7 @@ public class LoginServlet extends HttpServlet {
 		{
 			HttpSession session = request.getSession();
 			session.setAttribute("email", email);
+			
 		}
 	}
 
