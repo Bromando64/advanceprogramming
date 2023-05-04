@@ -29,7 +29,7 @@
 	    	<input type="checkbox" onclick="showFirst()"><label>   Show Password</label>
 	    </div>
 	    <div class="next">
-	   		<a href="${pageContext.request.contextPath}/signup.jsp">Sign Up?</a>
+	   		<a href="${pageContext.request.contextPath}/register.jsp">Sign Up?</a>
 	   	</div>
 	    <button type="submit">Login</button>
 	  </form>
@@ -44,6 +44,5 @@
 			    x.type = "password";
 			  }
 			}
-		
 	</script>
 </html>
