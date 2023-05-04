@@ -98,7 +98,7 @@
                 </form>
             </div>
             <%if(mySession.checkUser(email)){%>
-        		<button class="cart-btn">Go to Cart</button>
+        		<a href="${pageContext.request.contextPath}/Pages/cart_page.jsp"><button class="cart-btn">Go to Cart</button></a>
     		<%}%>
    	    	<form action="
     				<%if(!mySession.checkUser(email)){

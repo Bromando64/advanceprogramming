@@ -50,7 +50,7 @@
             <a href="${pageContext.request.contextPath}/home.jsp">Home</a>
             <a href="${pageContext.request.contextPath}/Pages/product_list.jsp?category=Men">Men</a>
             <a href="${pageContext.request.contextPath}/Pages/product_list.jsp?category=Women">Women</a>
-                        <a href="${pageContext.request.contextPath}/Pages/product_list.jsp">All Products</a>
+            <a href="${pageContext.request.contextPath}/Pages/product_list.jsp">All Products</a>
         </nav>
         <div class="right-container">
             <div class="search-container">
@@ -64,7 +64,7 @@
                 </form>
             </div>
             <%if(mySession.checkUser(email)){%>
-        		<button class="cart-btn">Go to Cart</button>
+        		<a href="${pageContext.request.contextPath}/Pages/cart_page.jsp"><button class="cart-btn">Go to Cart</button></a>
     		<%}%>
    	    	<form action="
     				<%if(!mySession.checkUser(email)){
