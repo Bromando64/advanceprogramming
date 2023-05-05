@@ -98,7 +98,7 @@
                 </form>
             </div>
             <%if(mySession.checkUser(email)){%>
-        		<button class="cart-btn">Go to Cart</button>
+        		<a href="${pageContext.request.contextPath}/Pages/cart_page.jsp"><button class="cart-btn">Go to Cart</button></a>
     		<%}%>
    	    	<form action="
     				<%if(!mySession.checkUser(email)){
@@ -108,7 +108,7 @@
     					out.print(mainPath);%>/LogoutServlet<%
    					}%>"
 	    		method="post">
-	  			<input type="submit" value="<%if(mySession.checkUser(email)){%> Logout <%}else{%> Login <%}%>"/>
+	  			<input class="cart-btn" type="submit" value="<%if(mySession.checkUser(email)){%> Logout <%}else{%> Login <%}%>"/>
 	    	</form>
         </div>
     </header>
