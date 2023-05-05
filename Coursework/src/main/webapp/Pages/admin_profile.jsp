@@ -20,20 +20,12 @@
     	SELECT userID, first_name, last_name
     	FROM user
     </sql:query>
-    <sql:query var="orders" dataSource="${dbConnection}">
-        SELECT ordered.orderID, product.product_name, product.price, product.brand, orderedproduct.quantity, product.category, user.email
-        FROM ordered
-        JOIN orderedproduct ON ordered.orderID = orderedproduct.orderID
-        JOIN product ON orderedproduct.productID = product.productID
-        JOIN user ON ordered.orderID = user.userID
-        WHERE ordered.userID = ?
-        <sql:param value="${user.rows[0].userID}" />
-    </sql:query>
     <sql:query var="products" dataSource="${dbConnection}">
- 		SELECT product.product_name, product.price, product.brand, product.quantity, product.category, product.sold, product_images.image_url
- 		FROM product
- 		JOIN product_images ON product_images.productID = product.productID   	
-    </sql:query>
+    	SELECT product.productID, product.product_name, product.price, product.brand, product.quantity, product.category, product.sold, product_images.image_url
+    	FROM product
+    	JOIN product_images ON product_images.productID = product.productID
+    	ORDER BY product.productID
+</sql:query>
     <header>
         <div class="logo">FashionHub</div>
         <nav>
@@ -45,7 +37,7 @@
     </header>
     <main>
     <h2>ADMIN PANEL</h2>
-
+		
     <div id="addProduct">
         <h3>Add Product</h3>
         <form action="addProduct" method="post" enctype="multipart/form-data">
@@ -69,9 +61,16 @@
             <button class="tablinks" onclick="openTab(event, 'orderList')">Order List</button>
     </div>
                     
-    <div id="productList" class="tabcontent">
-        <h3>Product List</h3>
-        <table id="productTable">
+<div id="productList" class="tabcontent">
+    <h3>Product List</h3>
+
+    <c:set var="prevProductID" value="-1" />
+
+<c:forEach var="product" items="${products.rows}">
+    <c:if test="${prevProductID ne product.productID}">
+        <c:set var="prevProductID" value="${product.productID}" />
+
+        <table id="productTable${product.productID}">
             <thead>
                 <tr>
                     <th>Product Name</th>
@@ -80,36 +79,60 @@
                     <th>Quantity</th>
                     <th>Category</th>
                     <th>Sold</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    <th>Product Image</th>
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="product" items="${products.rows}">
-                	<c:set var="images" value="${fn:split(product_image.image_url, ',')}" /> 
-      				<c:set var="numImages" value="${fn:length(images)}" /> 
-      				<tr>
-      					<td>${product.product_name}</td> 
-        				<td>${product.price}</td>
-        				<td>${product.brand}</td>
-				        <td>${product.quantity}</td>
-				        <td>${product.category}</td>
-				        <td>${product.sold}</td>
-				        <td><button class="edit-btn">Edit</button></td>
-				        <td><button class="delete-btn">Delete</button></td>
-				        <td><img src="http://localhost:7070/images/${product.image_url}" width="100" height="130"></td>
-				     </tr>
-				     
-				 </c:forEach>
+                <tr>
+                    <td>${product.product_name}</td>
+                    <td>${product.price}</td>
+                    <td>${product.brand}</td>
+                    <td>${product.quantity}</td>
+                    <td>${product.category}</td>
+                    <td>${product.sold}</td>
+                </tr>
             </tbody>
         </table>
-    </div>
+    </c:if>
+
+    <table id="productImageTable${product.productID}">
+        <thead>
+            <tr>
+                <th>Product Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <c:forEach var="productImage" items="${product.image_url}" varStatus="loop">
+                    <c:if test="${loop.index % 4 == 1}">
+                        </tr><tr>
+                    </c:if>
+                    <td><img src="http://localhost:7070/images/${productImage}" width="100" height="130"></td>
+                    <c:if test="${loop.last && loop.index % 4 != 0}">
+                        <c:forEach var="i" begin="0" end="${4 - loop.index % 4}">
+                            <td></td>
+                        </c:forEach>
+                    </c:if>
+                </c:forEach>
+            </tr>
+        </tbody>
+    </table>
+</c:forEach>
+</div>
 
     <div id="orderList" class="tabcontent">
         <h3>Order List</h3>
         <c:forEach var="user" items="${users.rows}">
         	<p><b>User Name:</b> ${user.first_name} ${user.last_name}</p>
+        	<sql:query var="orders" dataSource="${dbConnection}">
+        		SELECT ordered.orderID, product.product_name, product.price, product.brand, orderedproduct.quantity, product.category, user.email, user.userID 
+        		FROM ordered 
+        		JOIN orderedproduct ON ordered.orderID = orderedproduct.orderID 
+        		JOIN user ON ordered.userID = user.userID 
+        		JOIN product ON orderedproduct.productID = product.productID 
+        
+        		WHERE ordered.userID = ?
+        		<sql:param value="${user.userID}" />
+    		</sql:query>
         	<table id="orderTable">
             	<thead>
                 	<tr>
@@ -134,7 +157,7 @@
                 	</c:forEach>
             	</tbody>
         	</table>
-        	</c:forEach>
+        </c:forEach>
     </div>
     </main>
     <footer>
