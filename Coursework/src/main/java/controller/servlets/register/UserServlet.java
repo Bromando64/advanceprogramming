@@ -35,6 +35,7 @@ public class UserServlet extends HttpServlet {
 		String phoneNumber = request.getParameter("phoneNumber");
 		String email = request.getParameter("email");
 		Part imagePart = request.getPart("image");
+		
 		User userModel = new User(firstName, lastName, address, email, password, phoneNumber, imagePart);
 		
 	    String savePath = MyConstants.IMAGE_DIR_SAVE_PATH;
