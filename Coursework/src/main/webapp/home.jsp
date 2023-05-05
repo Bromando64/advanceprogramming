@@ -90,7 +90,7 @@
             <h1>Discover the Latest Trends</h1>
         </div>
     </div>
-    <p class="section-title">New Arrivals</p>
+    <p class="section-title">Our New Arrivals...</p>
     <div class="products">
     <c:forEach var="product" items="${products.rows}">
     <a href="${pageContext.request.contextPath}/Pages/individual.jsp?product_id=${product.productID}" class="no-style">
@@ -102,8 +102,8 @@
                 <img class="product-img-hover" src="http://localhost:7070/images/${imageUrls[1]}" alt="Product Hover">
             </c:if>
             </div>
-            <h2 class="no-style">${product.product_name}</h2>
-            <p class="no-style">Rs.${product.price}</p>
+            <h3 style="font-family: Times New Roman; class="no-style">${product.product_name}</h3>
+            <h3 style="font-family: Times New Roman; class="no-style">Rs.${product.price}</h3>
         </div>
     </a>
     </c:forEach>

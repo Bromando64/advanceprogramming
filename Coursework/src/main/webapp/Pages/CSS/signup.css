@@ -10,9 +10,6 @@ label {
   color: black;
 }
 
-
-
-
 .card {
 	
   background-color: white;
@@ -130,4 +127,11 @@ img
 {
 	width: 75px;
 	height: 75px;
+}
+/* Style the file input label */
+.file {
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  color: green;
 }

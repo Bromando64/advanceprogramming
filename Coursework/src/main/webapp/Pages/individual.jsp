@@ -91,11 +91,12 @@
             <div class="product-info">
 				<h1>${productData.rows[0].product_name}</h1>
                 <p class="brand">Brand: ${productData.rows[0].brand }</p>
-                <p class="quantity">Quantity: ${productData.rows[0].quantity}</p>
+                <h3 class="quantity">Quantity: ${productData.rows[0].quantity}</h3>
                 <div class="price">Rs.${productData.rows[0].price}</div>
                 <form action="${pageContext.request.contextPath}/AddToCartServlet" method="POST" class="add-to-cart-form">
 					    <input type="hidden" name="productID" value="${productData.rows[0].productID}">
 					    <input type="hidden" name="quantity" value="1" />
+					    <br>
 					    <button type="submit" class="add-to-cart">Add to Cart</button>
 				</form>
             </div>

@@ -114,8 +114,7 @@
     </header>
     <main>
         <div class="filters">
-            <h2>Filters</h2>
-            <h3>Brand</h3>
+            <h2 style="font-family: Comic Sans MS;">Filter Brands</h2>
             <form id="filterForm" action="${pageContext.request.contextPath}/ProductFilterServlet" method="GET">
             <div class="filter-options">
             <c:forEach var="brand" items="${uniqueBrands.rows}">
@@ -129,7 +128,7 @@
         	<div class="sort-container">
         	<form id="sortForm" action="${pageContext.request.contextPath}/Pages/product_list.jsp" method="GET">
 	       	    <input type="hidden" name="category" value="${category}">
-            	<label for="sort">Sort by:</label>
+            	<label for="sort" style="font-family: Comic Sans MS;">Sort by:</label>
             	<div class="select-container">
                 	<select name="sort" id="sort" onchange="document.getElementById('sortForm').submit()">
 	                    <option value="">---------</option>

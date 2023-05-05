@@ -13,6 +13,7 @@ main {
 
 .filters {
     flex-basis: 20%;
+    
 }
 
 .filters h2,
@@ -22,6 +23,7 @@ main {
 
 .filter-options {
     margin-bottom: 20px;
+    font-family: Times New Roman;
 }
 
 .filter-options input[type="checkbox"] {
@@ -127,6 +129,8 @@ main {
 
 .product-card h3 {
     margin: 10px 0;
+    font-family: Times New Roman;
+    
 }
 
 .product-card p {
@@ -143,7 +147,8 @@ main {
 }
 
 .product-card .quantity {
-    font-style: italic;
+    font-family: Times New Roman;
+    font-weight: bold;
 }
 
 
@@ -168,3 +173,5 @@ main {
 .add-to-cart:hover {
     background-color: #f9c830;
 }
+
+

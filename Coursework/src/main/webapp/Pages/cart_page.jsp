@@ -69,9 +69,9 @@
                         </svg></button>
                 </form>
             </div>
-            <%if(mySession.checkUser(email)){%>
-        		<button class="cart-btn">Go to Cart</button>
-    		<%}%>
+            
+            <img src="../Pages/banner/cart.png" width="37" height="34">
+            
    	    	<form action="
     				<%if(!mySession.checkUser(email)){
     					out.print(mainPath);%>/login.jsp<%
@@ -86,7 +86,6 @@
     </header>
     <main>
         <div class="cart-container">
-            <h2>Your Cart</h2>
             <!-- Add cart items here, fetched from the database -->
             <div class="cart-items">
                 <!-- Fetch cart items for the user from the database -->
@@ -109,10 +108,24 @@
     			</sql:query>
    			    <c:forEach items="${cartItems.rows}" var="item">
 			        <div class="cart-item">
-			            <p>Product Name: ${item.product_name}</p>
-			            <p>Brand: ${item.brand}</p>
-			            <p>Price: ${item.price}</p>
-			            <p>Quantity: ${item.quantity}</p>
+			            <table>
+					      <thead>
+					        <tr>
+					          <th>Product Name:</th>
+					          <th>Brand:</th>
+					          <th>Price:</th>
+					          <th>Quantity:</th>
+					        </tr>
+					      </thead>
+					      <tbody>
+					        <tr>
+					          <td>${item.product_name}</td>
+					          <td>${item.brand}</td>
+					          <td>${item.price}</td>
+					          <td>${item.quantity}</td>
+					        </tr>
+					      </tbody>
+					    </table>
 			        </div>
 			    </c:forEach>
             </div>
@@ -122,7 +135,7 @@
 				    <c:forEach items="${cartItems.rows}" var="item">
 				        <c:set var="total" value="${total + (item.price * item.quantity)}" />
 				    </c:forEach>
-    				<p>Total: Rs. ${total}</p>
+    				<h3 style="font-family: Rockwell;" > Total: Rs. ${total}</h3>
     				
                 <form action="${pageContext.request.contextPath}/CheckoutServlet" method="post">
     				<button class="checkout-btn" type="submit">Proceed to Checkout</button>
