@@ -40,19 +40,21 @@
 		
     <div id="addProduct">
         <h3>Add Product</h3>
-        <form action="addProduct" method="post" enctype="multipart/form-data">
+        <form action="${pageContext.request.contextPath}/AddProductServlet" method="post" enctype="multipart/form-data">
             <label for="productName">Product Name:</label>
             <input type="text" id="productName" name="productName">
             <label for="Price">Price:</label>
-            <input type="text" id="Price" name="Price">
+            <input type="text" id="Price" name="price">
             <label for="Brand">Brand:</label>
-            <input type="text" id="Brand" name="Brand">
+            <input type="text" id="Brand" name="brand">
             <label for="Quantity">Quantity:</label>
-            <input type="text" id="Quantity" name="Quantity">
+            <input type="text" id="Quantity" name="quantity">
+            <label for="Quantity">Sold:</label>
+            <input type="text" id="Sold" name="sold">
             <label for="Category">Category:</label>
-            <input type="text" id="Category" name="Category">
+            <input type="text" id="Category" name="category">
             <label for="Category">Product Image:</label>
-            <input type="file" id="Product Image" name="Product Image">
+            <input type="file" id="Product Image" name="image">
             <input type="submit" value="Add Product">
         </form>
     </div>
