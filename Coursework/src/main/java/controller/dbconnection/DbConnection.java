@@ -103,5 +103,31 @@ public class DbConnection {
 		}
 	}
 	
+	public Boolean updateUser(String query, User userModel, String email) {
+		Connection dbConnection = getConnection();
+		if (dbConnection != null) {
+			try {
+				PreparedStatement statement = dbConnection.prepareStatement(query);
+				statement.setString(1, userModel.getFirstName());
+				statement.setString(2, userModel.getLastName());
+				statement.setString(3, userModel.getPhoneNumber());
+				statement.setString(4, userModel.getAddress());
+				statement.setString(5, userModel.getEmail());
+				statement.setString(6, PasswordEncryptionWithAes.encrypt(
+						userModel.getEmail(), userModel.getPassword()));
+				statement.setString(7, userModel.getImageUrlFromPart());
+				statement.setString(8, email);
+				int result = statement.executeUpdate();
+				if (result>=0) return true;
+				else return false;
+			}catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}else {
+			return false;
+		}
+	}
+	
 	
 }
