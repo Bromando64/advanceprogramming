@@ -137,3 +137,14 @@ tr:nth-child(even) {
     border-top: none;
     width: 97%;
 }
+
+#productImageTable {
+    position: relative;
+    top: 10px;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 10px;
+}
