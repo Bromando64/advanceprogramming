@@ -83,14 +83,32 @@ public class AddToCartServlet extends HttpServlet {
 					cartId = generatedKeys.getInt(1);
 				}
 				
-				//Add the product to the cartproduct table
-				String addProductToCartQuery = "INSERT INTO cartproduct (productID, cartID, quantity) VALUES (?,?,?)";
-				PreparedStatement addProductToCartStmt = con.prepareStatement(addProductToCartQuery);
-				addProductToCartStmt.setInt(1, productID);
-				addProductToCartStmt.setInt(2, cartId);
-				addProductToCartStmt.setInt(3, quantity);
-				addProductToCartStmt.executeUpdate();
-				
+				// Check if the product already exists in the cart
+				String checkProductExistsQuery = "SELECT * FROM cartproduct WHERE productID = ? AND cartID = ?";
+		        PreparedStatement checkProductExistsStmt = con.prepareStatement(checkProductExistsQuery);
+		        checkProductExistsStmt.setInt(1, productID);
+		        checkProductExistsStmt.setInt(2, cartId);
+		        ResultSet productExistsResultSet = checkProductExistsStmt.executeQuery();
+		        
+		        if (productExistsResultSet.next()) {
+		        	//Update the quantity of the existing product in the cart
+		        	int existingQuantity = productExistsResultSet.getInt("quantity");
+		            String updateProductQuantityQuery = "UPDATE cartproduct SET quantity = ? WHERE productID = ? AND cartID = ?";
+		            PreparedStatement updateProductQuantityStmt = con.prepareStatement(updateProductQuantityQuery);
+		            updateProductQuantityStmt.setInt(1, existingQuantity + quantity);
+		            updateProductQuantityStmt.setInt(2, productID);
+		            updateProductQuantityStmt.setInt(3, cartId);
+		            updateProductQuantityStmt.executeUpdate();
+		        } else {
+		        	//Add the product to the cartproduct table
+					String addProductToCartQuery = "INSERT INTO cartproduct (productID, cartID, quantity) VALUES (?,?,?)";
+					PreparedStatement addProductToCartStmt = con.prepareStatement(addProductToCartQuery);
+					addProductToCartStmt.setInt(1, productID);
+					addProductToCartStmt.setInt(2, cartId);
+					addProductToCartStmt.setInt(3, quantity);
+					addProductToCartStmt.executeUpdate();
+		        }
+		
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}

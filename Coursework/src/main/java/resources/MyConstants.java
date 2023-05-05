@@ -22,5 +22,6 @@ public class MyConstants {
 	public static final String USER_REGISTER = "INSERT INTO user"
 			+ "(first_name, last_name, phonenumber, address, email, password, imageID)"
 			+ " VALUES(?,?,?,?,?,?,?)";
+	public static final String USER_UPDATE = "UPDATE user SET first_name = ?, last_name = ?, phonenumber = ?, address = ?, email = ?, password = ?, imageID = ? WHERE email = ?";
 	// End Region: Insert Query
 }
