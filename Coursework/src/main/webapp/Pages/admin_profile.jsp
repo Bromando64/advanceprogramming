@@ -94,16 +94,40 @@
                     <th>Quantity</th>
                     <th>Category</th>
                     <th>Sold</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                    <th>Add Image</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>${product.product_name}</td>
-                    <td>${product.price}</td>
-                    <td>${product.brand}</td>
-                    <td>${product.quantity}</td>
-                    <td>${product.category}</td>
-                    <td>${product.sold}</td>
+                    <td>
+                    <label for"productName"></label>
+                    <input type="text" name="productName" value="${product.product_name}">
+                    </td>
+                    <td>
+                    <label for"productPrice"></label>
+                    <input type="text" name="productPrice" value="${product.price}" style="width: 80px;">
+                    </td>
+                    <td>
+                    <label for"productBrand"></label>
+                    <input type="text" name="productBrand" value="${product.brand}" style="width: 120px;">
+                    </td>
+                    <td>
+                    <label for"productQuantity"></label>
+                    <input type="text" name="productQuantity" value="${product.quantity}" style="width: 60px;">
+                    </td>
+                    <td>
+                    <label for"productCategory"></label>
+                    <input type="text" name="productCategory" value="${product.category}" style="width: 90px;">
+                    </td>
+                    <td>
+                    <label for"productSold"></label>
+                    <input type="text" name="productSold" value="${product.sold}" style="width: 60px;">
+                    </td>
+                    <td><button class="edit-btn">Update</button></td>
+                    <td><button class="delete-btn">Delete</button></td>
+                    <td><button style="background-color: green; border-radius: 25px; color:white;">Add</button></td>
                 </tr>
             </tbody>
         </table>
@@ -121,7 +145,10 @@
                     <c:if test="${loop.index % 4 == 1}">
                         </tr><tr>
                     </c:if>
-                    <td><img src="http://localhost:7070/images/${productImage}" width="100" height="130"></td>
+                    <td style="text-align: center;">
+                    <img src="http://localhost:7070/images/${productImage}" width="100" height="130"><br> 
+                    <button style="background-color: white; border-radius: 25px;">Remove</button>
+                    </td>
                     <c:if test="${loop.last && loop.index % 4 != 0}">
                         <c:forEach var="i" begin="0" end="${4 - loop.index % 4}">
                             <td></td>
