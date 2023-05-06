@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,15 +43,17 @@ public class AddToCartServlet extends HttpServlet {
 		if(sessionManage.checkUser(email)) {
 			int productID = Integer.parseInt(request.getParameter("productID"));
 			int quantity = Integer.parseInt(request.getParameter("quantity"));
-			addToCart(email, productID, quantity);
-			response.sendRedirect(request.getContextPath()+"/Pages/product_list.jsp");
+			addToCart(request, email, productID, quantity);
 			
+			// Forward the request to the product_list.jsp page
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/Pages/product_list.jsp");
+		    dispatcher.forward(request, response);
 		} else {
 			response.sendRedirect(request.getContextPath() + "/login.jsp");
 		}
 	}
 	
-	private void addToCart(String email, int productID, int quantity) {
+	private void addToCart(HttpServletRequest request, String email, int productID, int quantity) {
 		try {
 				DbConnection connection = new DbConnection();
 				Connection con = connection.getConnection();
@@ -74,6 +77,7 @@ public class AddToCartServlet extends HttpServlet {
 				if (cartIdResultSet.next()) {
 					cartId = cartIdResultSet.getInt("cartID");
 				}else {
+					//Create new cart if not created
 					String createCartQuery = "INSERT INTO cart (userID) VALUES (?)";
 					PreparedStatement createCartStmt = con.prepareStatement(createCartQuery, Statement.RETURN_GENERATED_KEYS);
 					createCartStmt.setInt(1, userId);
@@ -83,31 +87,55 @@ public class AddToCartServlet extends HttpServlet {
 					cartId = generatedKeys.getInt(1);
 				}
 				
-				// Check if the product already exists in the cart
-				String checkProductExistsQuery = "SELECT * FROM cartproduct WHERE productID = ? AND cartID = ?";
-		        PreparedStatement checkProductExistsStmt = con.prepareStatement(checkProductExistsQuery);
-		        checkProductExistsStmt.setInt(1, productID);
-		        checkProductExistsStmt.setInt(2, cartId);
-		        ResultSet productExistsResultSet = checkProductExistsStmt.executeQuery();
-		        
-		        if (productExistsResultSet.next()) {
-		        	//Update the quantity of the existing product in the cart
-		        	int existingQuantity = productExistsResultSet.getInt("quantity");
-		            String updateProductQuantityQuery = "UPDATE cartproduct SET quantity = ? WHERE productID = ? AND cartID = ?";
-		            PreparedStatement updateProductQuantityStmt = con.prepareStatement(updateProductQuantityQuery);
-		            updateProductQuantityStmt.setInt(1, existingQuantity + quantity);
-		            updateProductQuantityStmt.setInt(2, productID);
-		            updateProductQuantityStmt.setInt(3, cartId);
-		            updateProductQuantityStmt.executeUpdate();
-		        } else {
-		        	//Add the product to the cartproduct table
-					String addProductToCartQuery = "INSERT INTO cartproduct (productID, cartID, quantity) VALUES (?,?,?)";
-					PreparedStatement addProductToCartStmt = con.prepareStatement(addProductToCartQuery);
-					addProductToCartStmt.setInt(1, productID);
-					addProductToCartStmt.setInt(2, cartId);
-					addProductToCartStmt.setInt(3, quantity);
-					addProductToCartStmt.executeUpdate();
-		        }
+				// Get current product quantity and sold count
+				String getProductDetailsQuery = "SELECT quantity, sold FROM product WHERE productID = ?";
+				PreparedStatement getProductDetailsStmt = con.prepareStatement(getProductDetailsQuery);
+				getProductDetailsStmt.setInt(1, productID);
+				ResultSet productDetailsResultSet = getProductDetailsStmt.executeQuery();
+				productDetailsResultSet.next();
+				int currentQuantity = productDetailsResultSet.getInt("quantity");
+				int currentSold = productDetailsResultSet.getInt("sold");
+
+				// Validate requested quantity
+				if (quantity > currentQuantity) {
+					// Set an error attribute in the request object
+					request.setAttribute("errorMessage", "Requested quantity is more than the available stock.");
+					
+				} else {
+					// Update product quantity and sold count
+					String updateProductQuery = "UPDATE product SET quantity = ?, sold = ? WHERE productID = ?";
+					PreparedStatement updateProductStmt = con.prepareStatement(updateProductQuery);
+					updateProductStmt.setInt(1, currentQuantity - quantity);
+					updateProductStmt.setInt(2, currentSold + quantity);
+					updateProductStmt.setInt(3, productID);
+					updateProductStmt.executeUpdate();
+
+					// Check if the product already exists in the cart
+					String checkProductExistsQuery = "SELECT * FROM cartproduct WHERE productID = ? AND cartID = ?";
+			        PreparedStatement checkProductExistsStmt = con.prepareStatement(checkProductExistsQuery);
+			        checkProductExistsStmt.setInt(1, productID);
+			        checkProductExistsStmt.setInt(2, cartId);
+			        ResultSet productExistsResultSet = checkProductExistsStmt.executeQuery();
+			        
+			        if (productExistsResultSet.next()) {
+			        	//Update the quantity of the existing product in the cart
+			        	int existingQuantity = productExistsResultSet.getInt("quantity");
+			            String updateProductQuantityQuery = "UPDATE cartproduct SET quantity = ? WHERE productID = ? AND cartID = ?";
+			            PreparedStatement updateProductQuantityStmt = con.prepareStatement(updateProductQuantityQuery);
+			            updateProductQuantityStmt.setInt(1, existingQuantity + quantity);
+			            updateProductQuantityStmt.setInt(2, productID);
+			            updateProductQuantityStmt.setInt(3, cartId);
+			            updateProductQuantityStmt.executeUpdate();
+			       } else {
+			        	//Add the product to the cartproduct table
+						String addProductToCartQuery = "INSERT INTO cartproduct (productID, cartID, quantity) VALUES (?,?,?)";
+						PreparedStatement addProductToCartStmt = con.prepareStatement(addProductToCartQuery);
+						addProductToCartStmt.setInt(1, productID);
+						addProductToCartStmt.setInt(2, cartId);
+						addProductToCartStmt.setInt(3, quantity);
+						addProductToCartStmt.executeUpdate();
+			      }
+			}
 		
 		}catch (SQLException e) {
 			e.printStackTrace();
