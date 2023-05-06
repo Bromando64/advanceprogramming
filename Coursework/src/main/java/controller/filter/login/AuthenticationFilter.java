@@ -48,14 +48,18 @@ public class AuthenticationFilter implements Filter{
 		HttpSession session = req.getSession(false);
 		boolean loggedIn = session != null && session.getAttribute("email") != null;
 		
-		if (!loggedIn && !(isLoginJsp || isLoginServlet  || isHomeJsp || isProductListJsp|| isProductFilterServlet || isUserRegisterServlet ||  isRegisterJsp) && !uri.contains("css")&& !uri.contains("png") && !uri.contains("jpg")) {
-			res.sendRedirect(req.getContextPath()+"/login.jsp");
-		}else if(loggedIn && isLoginJsp) {
-			res.sendRedirect(req.getContextPath()+"/home.jsp");
-		}else {
-			chain.doFilter(request, response);
-		}
+		boolean isAdmin = loggedIn && Boolean.TRUE.equals(session.getAttribute("isAdmin"));
+		boolean isAdminPanelJsp = uri.endsWith("admin_profile.jsp");
 		
+		if (!loggedIn && !(isLoginJsp || isLoginServlet || isLogoutServlet || isHomeJsp || isProductListJsp || isProductFilterServlet || isUserRegisterServlet || isRegisterJsp || isAdminPanelJsp) && !uri.contains("css") && !uri.contains("png") && !uri.contains("jpg")) {
+		    res.sendRedirect(req.getContextPath() + "/login.jsp");
+		} else if (loggedIn && isAdmin && !isAdminPanelJsp && !isLogoutServlet) {
+		    res.sendRedirect(req.getContextPath() + "/Pages/admin_profile.jsp");
+		} else if (loggedIn && !isAdmin && isLoginJsp) {
+		    res.sendRedirect(req.getContextPath() + "/home.jsp");
+		} else {
+		    chain.doFilter(request, response);
+		}
 	}
 	
 	@Override
