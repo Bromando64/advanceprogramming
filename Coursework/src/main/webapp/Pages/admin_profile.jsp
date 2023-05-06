@@ -101,34 +101,51 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>
-                    <label for"productName"></label>
-                    <input type="text" name="productName" value="${product.product_name}">
-                    </td>
-                    <td>
-                    <label for"productPrice"></label>
-                    <input type="text" name="productPrice" value="${product.price}" style="width: 80px;">
-                    </td>
-                    <td>
-                    <label for"productBrand"></label>
-                    <input type="text" name="productBrand" value="${product.brand}" style="width: 120px;">
-                    </td>
-                    <td>
-                    <label for"productQuantity"></label>
-                    <input type="text" name="productQuantity" value="${product.quantity}" style="width: 60px;">
-                    </td>
-                    <td>
-                    <label for"productCategory"></label>
-                    <input type="text" name="productCategory" value="${product.category}" style="width: 90px;">
-                    </td>
-                    <td>
-                    <label for"productSold"></label>
-                    <input type="text" name="productSold" value="${product.sold}" style="width: 60px;">
-                    </td>
-                    <td><button class="edit-btn">Update</button></td>
-                    <td><button class="delete-btn">Delete</button></td>
-                    <td><button style="background-color: green; border-radius: 25px; color:white;">Add</button></td>
-                </tr>
+				  <form method="POST" action="${pageContext.request.contextPath}/UpdateProductServlet">
+				    <td>
+				      <label for="productName"></label>
+				      <input type="text" name="productName" value="${product.product_name}">
+				    </td>
+				    <td>
+				      <label for="productPrice"></label>
+				      <input type="text" name="price" value="${product.price}" style="width: 80px;">
+				    </td>
+				    <td>
+				      <label for="productBrand"></label>
+				      <input type="text" name="brand" value="${product.brand}" style="width: 120px;">
+				    </td>
+				    <td>
+				      <label for="productQuantity"></label>
+				      <input type="text" name="quantity" value="${product.quantity}" style="width: 60px;">
+				    </td>
+				    <td>
+				      <label for="productCategory"></label>
+				      <input type="text" name="category" value="${product.category}" style="width: 90px;">
+				    </td>
+				    <td>
+				      <label for="productSold"></label>
+				      <input type="text" name="sold" value="${product.sold}" style="width: 60px;">
+				    </td>
+				    <td>
+				    	<input type="hidden" name="productID" value="${product.productID}">
+				    	<button type="submit" class="edit-btn">Update</button>
+				    </td>
+				  </form>
+				  <form method="POST" action="${pageContext.request.contextPath}/DeleteProductServlet">
+				    <td>
+				      <input type="hidden" name="productID" value="${product.productID}">
+				      <button type="submit" class="delete-btn">Delete</button>
+				    </td>
+				  </form>
+				  <td>
+				    <form method="POST" action="${pageContext.request.contextPath}/AddProductImageServlet" enctype="multipart/form-data">
+				      <input type="hidden" name="productID" value="${product.productID}">
+				      <input type="file" id="Product Image" name="image">
+				      <br/>
+				      <button>Submit</button>
+				    </form>
+				  </td>
+				</tr>
             </tbody>
         </table>
     </c:if>
@@ -141,21 +158,16 @@
         </thead>
         <tbody>
             <tr>
-                <c:forEach var="productImage" items="${product.image_url}" varStatus="loop">
-                    <c:if test="${loop.index % 4 == 1}">
-                        </tr><tr>
-                    </c:if>
-                    <td style="text-align: center;">
-                    <img src="http://localhost:7070/images/${productImage}" width="100" height="130"><br> 
-                    <button style="background-color: white; border-radius: 25px;">Remove</button>
-                    </td>
-                    <c:if test="${loop.last && loop.index % 4 != 0}">
-                        <c:forEach var="i" begin="0" end="${4 - loop.index % 4}">
-                            <td></td>
-                        </c:forEach>
-                    </c:if>
-                </c:forEach>
-            </tr>
+			  <c:forEach var="productImage" items="${product.image_url}" varStatus="loop">
+			    <td style="text-align: center;">
+			      <img src="http://localhost:7070/images/${productImage}" width="100" height="130"><br> 
+			      <form action="${pageContext.request.contextPath}/DeleteProductImageServlet" method="POST">
+				      <input type="hidden" name="productImageUrl" value="${productImage}">
+				      <button type="submit" style="background-color: white; border-radius: 25px;">Remove</button>
+			      </form>
+			    </td>
+			  </c:forEach>
+			</tr>
         </tbody>
     </table>
 </c:forEach>
@@ -171,7 +183,6 @@
         		JOIN orderedproduct ON ordered.orderID = orderedproduct.orderID 
         		JOIN user ON ordered.userID = user.userID 
         		JOIN product ON orderedproduct.productID = product.productID 
-        
         		WHERE ordered.userID = ?
         		<sql:param value="${user.userID}" />
     		</sql:query>

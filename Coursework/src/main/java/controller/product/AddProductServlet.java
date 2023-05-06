@@ -63,8 +63,7 @@ public class AddProductServlet extends HttpServlet {
 		    int resultImg = con.insertProductImage(MyConstants.PRODUCT_IMAGE_INSERT, productImageModel);
 			
 		    if (resultImg == 1) {
-		    	request.setAttribute("productMessage", "Successfully Added");
-		    	request.getRequestDispatcher("/Pages/admin_profile.jsp").forward(request, response);
+		    	response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 		    }else {
 		    	System.out.println("imgerr" + result);
 		    	request.getRequestDispatcher("/Pages/admin_profile.jsp").forward(request, response);

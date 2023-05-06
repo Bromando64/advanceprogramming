@@ -42,7 +42,12 @@ public class AuthenticationFilter implements Filter{
         boolean isProductFilterServlet = uri.contains("ProductFilterServlet");
 		boolean isRegisterJsp = uri.endsWith("register.jsp");
 		boolean isUserRegisterServlet = uri.endsWith("UserServlet");
-        
+		boolean isProductAddServlet = uri.endsWith("AddProductServlet");
+		boolean isProductUpdateServlet = uri.endsWith("UpdateProductServlet");
+		boolean isProductDeleteServlet = uri.endsWith("DeleteProductServlet");
+		boolean isProductDeleteImageServlet = uri.endsWith("DeleteProductImageServlet");
+		boolean isProductAddImageServlet = uri.endsWith("AddProductImageServlet");
+		
 		this.context.log("Requested Resource::" + uri);
 		
 		HttpSession session = req.getSession(false);
@@ -51,11 +56,11 @@ public class AuthenticationFilter implements Filter{
 		boolean isAdmin = loggedIn && Boolean.TRUE.equals(session.getAttribute("isAdmin"));
 		boolean isAdminPanelJsp = uri.endsWith("admin_profile.jsp");
 		
-		if (!loggedIn && !(isLoginJsp || isLoginServlet || isLogoutServlet || isHomeJsp || isProductListJsp || isProductFilterServlet || isUserRegisterServlet || isRegisterJsp || isAdminPanelJsp) && !uri.contains("css") && !uri.contains("png") && !uri.contains("jpg")) {
+		if (!loggedIn && !(isLoginJsp || isLoginServlet || isLogoutServlet || isHomeJsp || isProductListJsp || isProductFilterServlet || isUserRegisterServlet || isRegisterJsp || (isAdmin && isProductAddServlet && isProductUpdateServlet && isProductDeleteServlet && isProductDeleteImageServlet && isProductAddImageServlet)) && !uri.contains("css") && !uri.contains("png") && !uri.contains("jpg")) {
 		    res.sendRedirect(req.getContextPath() + "/login.jsp");
-		} else if (loggedIn && isAdmin && !isAdminPanelJsp && !isLogoutServlet) {
+		} else if (loggedIn && isAdmin && !isAdminPanelJsp && !isLogoutServlet && !isProductAddServlet && !isProductUpdateServlet && !isProductDeleteServlet && !isProductDeleteImageServlet && !isProductAddImageServlet && !uri.contains("css") && !uri.contains("png") && !uri.contains("jpg")) {
 		    res.sendRedirect(req.getContextPath() + "/Pages/admin_profile.jsp");
-		} else if (loggedIn && !isAdmin && isLoginJsp) {
+		} else if (loggedIn && !isAdmin && (isLoginJsp || isAdminPanelJsp)) {
 		    res.sendRedirect(req.getContextPath() + "/home.jsp");
 		} else {
 		    chain.doFilter(request, response);
