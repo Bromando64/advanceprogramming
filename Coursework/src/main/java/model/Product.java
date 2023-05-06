@@ -1,11 +1,11 @@
 package model;
 
-public class Products {
+public class Product {
 	String product_name, brand, category;
 	double price;
 	int quantity, sold;
 	
-	public Products(String product_name, String brand, String category, double price, int quantity, int sold) {
+	public Product(String product_name, String brand, String category, double price, int quantity, int sold) {
 		this.product_name = product_name;
 		this.brand = brand;
 		this.category = category;

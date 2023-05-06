@@ -1,0 +1,150 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 10%;
+}
+main{
+    border-style: solid;
+    margin-top: 5px;
+}
+
+h2 {
+    text-align: center;
+    padding: 20px;
+    color: #333;
+}
+
+h3 {
+    margin-left: 10px;
+    padding: 10px 0;
+    color: #333;
+}
+
+form {
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form input[type="text"], form input[type="file"], form input[type="number"] {
+    width: 97%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 15px;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.edit-btn {
+    background-color: white;
+    border-radius: 25px;
+}
+
+.delete-btn {
+    background-color: red;
+    border-radius: 25px;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.container {
+    display: flex;
+    margin: 2% 12%;
+}
+
+.tab {
+    width: 22%;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    margin-left: 10px;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+    width: 97%;
+}
+
+#productImageTable {
+    position: relative;
+    top: 10px;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 10px;
+}
