@@ -76,7 +76,6 @@ public class CheckoutServlet extends HttpServlet {
 	            insertOrderedProductStmt.executeUpdate();
 	            
 				//SQL statement to delete the cart items
-	            
 				String deleteCartSQL = "DELETE FROM cart WHERE userID = ?";
 				PreparedStatement deleteCartStmt = con.prepareStatement(deleteCartSQL);
 				deleteCartStmt.setInt(1, userID);

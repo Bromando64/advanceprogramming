@@ -137,8 +137,8 @@
 				    </c:forEach>
     				<h3 style="font-family: Rockwell;" > Total: Rs. ${total}</h3>
     				
-    				<form action="${pageContext.request.contextPath}/RemoveCartServlet" method="post">
-       					 <button onclick="confirmRemoveAllItems()" class="checkout-btn" type="submit">Remove All Items</button>
+    				<form action="${pageContext.request.contextPath}/RemoveCartServlet" method="post" onsubmit="return confirmRemoveAllItems()">
+       					 <button class="checkout-btn" type="submit">Remove All Items</button>
     				</form>
        				<br/>
 	                <form action="${pageContext.request.contextPath}/CheckoutServlet" method="post">
@@ -151,14 +151,9 @@
         &copy; 2023 FashionHub. All rights reserved.
     </footer>
     <script>
-	function confirmRemoveAllItems() {
-    if (confirm("Are you sure you want to remove all items from the cart?")) {
-        // Call the RemoveAllItemsServlet when the user clicks "OK"
-        window.location.href = "/RemoveAllItemsServlet";
-    } else {
-        // Do nothing when the user clicks "Cancel"
+    function confirmRemoveAllItems() {
+        return confirm("Are you sure you want to remove all items from the cart?");
     }
-}
 </script>
 </body>
 
