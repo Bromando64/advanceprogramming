@@ -40,7 +40,7 @@
 	    	<input type="checkbox" onclick="showFirst()"><label>   Show Password</label>
 	    </div>
 	    <div>
-		    <label for="Profile">Upload Profile Picture</label>
+		    <label for="Profile">Upload Profile:</label>
 		    <input placeholder="‎" type="file" id="image" name="image" required="required" value="" >
 		<br><br>
 	    </div>
@@ -49,7 +49,7 @@
 	   		<a href="${pageContext.request.contextPath}/login.jsp">Login?</a>
 	   	</div>
 	    
-	    <button type="submit">Sign Up</button>
+	    <button  type="submit" style="background-color:#333;">Sign Up</button>
 	  </form>
 	</div>
 </body>

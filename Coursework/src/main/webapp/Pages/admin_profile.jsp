@@ -67,7 +67,7 @@
             <label for="Category">Category:</label>
             <input type="text" id="Category" name="category">
             <label for="Category">Product Image:</label>
-            <input type="file" id="Product Image" name="image">
+            <input type="file" id="Product Image" name="image" required="required">
             <input type="submit" value="Add Product">
         </form>
     </div>
@@ -131,7 +131,7 @@
 				    	<button type="submit" class="edit-btn">Update</button>
 				    </td>
 				  </form>
-				  <form method="POST" action="${pageContext.request.contextPath}/DeleteProductServlet">
+				  <form method="POST" action="${pageContext.request.contextPath}/DeleteProductServlet" onsubmit="return confirmRemoveProduct()">
 				    <td>
 				      <input type="hidden" name="productID" value="${product.productID}">
 				      <button type="submit" class="delete-btn">Delete</button>
@@ -231,6 +231,10 @@
             evt.currentTarget.className += " active";
         }
         document.getElementById("defaultOpen").click();
+        
+        function confirmRemoveProduct() {
+            return confirm("Are you sure you want to remove the product?");
+        }
     </script>
     
 </body>

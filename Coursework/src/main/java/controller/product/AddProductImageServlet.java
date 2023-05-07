@@ -54,10 +54,8 @@ public class AddProductImageServlet extends HttpServlet {
 	    	response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 	    }else {
 	    	System.out.println("imgerr" + resultImg);
-	    	request.getRequestDispatcher("/Pages/admin_profile.jsp").forward(request, response);
+	    	response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 	    }
-	    
-	    
 		
 	}
 
