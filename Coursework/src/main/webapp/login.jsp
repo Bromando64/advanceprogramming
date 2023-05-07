@@ -31,7 +31,7 @@
 	    <div class="next">
 	   		<a href="${pageContext.request.contextPath}/register.jsp">Sign Up?</a>
 	   	</div>
-	    <button type="submit">Login</button>
+	    <button type="submit" style="background-color:#333;">Login</button>
 	  </form>
 	</div>
 </body>
