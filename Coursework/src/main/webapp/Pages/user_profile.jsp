@@ -64,18 +64,20 @@
     </header>
     <main>
         <div class="title">
-            <h2>Welcome,<br>to your account</h2>
+        <br>
             <img class="profile-image" src="http://localhost:7070/images/${user.rows[0].imageID}" alt="Profile Picture" id="profilePic">
         </div>
-
+		<br>
+		<br>
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'UserDetails')" id="defaultOpen">User
                 Details</button>
             <button class="tablinks" onclick="openTab(event, 'UserOrders')">User Orders</button>
         </div>
-
+		<br>
+		<br>
         <div id="UserDetails" class="tabcontent">
-            <h3>User Details</h3>
+            <h3 style="font-family: Rockwell;" >User Details</h3>
             <form action="${pageContext.request.contextPath}/UpdateUserServlet" method="post" enctype="multipart/form-data">
             
                 <label for="firstName">First Name</label>
@@ -104,7 +106,7 @@
         </div>
 
         <div id="UserOrders" class="tabcontent">
-            <h3>Order History</h3>
+            <h3 style="font-family: Rockwell;">Order History</h3>
             <table>
                 <thead>
                     <tr>
