@@ -36,13 +36,14 @@ public class AddProductServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String product_name = request.getParameter("productName");
-		String brand = request.getParameter("brand");
-		String category = request.getParameter("category");
-		double price = Double.parseDouble(request.getParameter("price"));
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		int sold = Integer.parseInt(request.getParameter("sold"));
-		Part imagePart = request.getPart("image");
+		try {
+			String product_name = request.getParameter("productName");
+			String brand = request.getParameter("brand");
+			String category = request.getParameter("category");
+			double price = Double.parseDouble(request.getParameter("price"));
+			int quantity = Integer.parseInt(request.getParameter("quantity"));
+			int sold = Integer.parseInt(request.getParameter("sold"));
+			Part imagePart = request.getPart("image");
 		
 		Product productModel = new Product(product_name, brand, category, price, quantity, sold);
 		
@@ -75,8 +76,11 @@ public class AddProductServlet extends HttpServlet {
 		}else {
 			System.out.println(result[1]);
 			response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
+			}
+		}catch(NumberFormatException e) {
+			e.printStackTrace();
+			response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 		}
-		
 	}
 
 }
