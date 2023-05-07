@@ -67,7 +67,7 @@
             <label for="Category">Category:</label>
             <input type="text" id="Category" name="category">
             <label for="Category">Product Image:</label>
-            <input type="file" id="Product Image" name="image">
+            <input type="file" id="Product Image" name="image" required="required">
             <input type="submit" value="Add Product">
         </form>
     </div>
