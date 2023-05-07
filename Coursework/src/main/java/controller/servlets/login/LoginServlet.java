@@ -36,26 +36,41 @@ public class LoginServlet extends HttpServlet {
 		String email=request.getParameter("email");
 		String pass =request.getParameter("password");
 		
-		DbConnection connection = new DbConnection();
-		Boolean isUserRegistered = connection.isUserRegistered(MyConstants.CHECK_LOGIN_INFO, email, pass);
-		if(isUserRegistered !=null && isUserRegistered)
-		{
+		if("admin@admin.admin".equals(email)&& "admin".equals(pass)) {
 			HttpSession session = request.getSession();
-			session.setAttribute("email", email);
-      
-			//setting session to expire in 30 mins
-			session.setMaxInactiveInterval(30*60);
-			
-			Cookie emailName = new Cookie("email", email);
+		    session.setAttribute("email", email);
+		    session.setAttribute("isAdmin", true);
+		    
+		    session.setMaxInactiveInterval(30*60);
+		    Cookie emailName = new Cookie("email", email);
 			emailName.setMaxAge(30*60);
 			response.addCookie(emailName);
-			response.sendRedirect(request.getContextPath()+"/home.jsp");
+		    
+		    
+		    response.sendRedirect("Pages/admin_profile.jsp");
 		}else {
-			//set error message
-			request.setAttribute("errorMessage", "Invalid email or password");
-			// forward request to login page
-			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-			dispatcher.include(request, response);
+		
+			DbConnection connection = new DbConnection();
+			Boolean isUserRegistered = connection.isUserRegistered(MyConstants.CHECK_LOGIN_INFO, email, pass);
+			if(isUserRegistered !=null && isUserRegistered)
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("email", email);
+	      
+				//setting session to expire in 30 mins
+				session.setMaxInactiveInterval(30*60);
+				
+				Cookie emailName = new Cookie("email", email);
+				emailName.setMaxAge(30*60);
+				response.addCookie(emailName);
+				response.sendRedirect(request.getContextPath()+"/home.jsp");
+			}else {
+				//set error message
+				request.setAttribute("errorMessage", "Invalid email or password");
+				// forward request to login page
+				RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+				dispatcher.include(request, response);
+			}
 		}
 
 	}

@@ -215,6 +215,31 @@ public class DbConnection {
 			return -3;
 		}
 	}
+	
+	
+	public Boolean updateProduct(String query, Product productModel, int productID) {
+		Connection dbConnection = getConnection();
+		if (dbConnection != null) {
+			try {
+				PreparedStatement statement = dbConnection.prepareStatement(query);
+				statement.setString(1, productModel.getProduct_name());
+				statement.setDouble(2, productModel.getPrice());
+				statement.setString(3, productModel.getBrand());
+				statement.setInt(4, productModel.getQuantity());
+				statement.setString(5, productModel.getCategory());
+				statement.setInt(6, productModel.getSold());
+				statement.setInt(7, productID);
+				int result = statement.executeUpdate();
+				if (result>=0) return true;
+				else return false;
+			}catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}else {
+			return false;
+		}
+	}
 		
 	
 }
