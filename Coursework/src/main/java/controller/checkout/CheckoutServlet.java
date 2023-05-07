@@ -82,7 +82,6 @@ public class CheckoutServlet extends HttpServlet {
 				deleteCartStmt.setInt(1, userID);
 				deleteCartStmt.executeUpdate();
 				
-				
 			}catch (SQLException ex) {
 				ex.printStackTrace();
 			}

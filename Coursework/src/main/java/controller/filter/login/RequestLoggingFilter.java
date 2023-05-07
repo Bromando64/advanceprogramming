@@ -35,7 +35,6 @@ private ServletContext context;
 			String value = request.getParameter(name);
 			this.context.log(req.getRemoteAddr()+"::Request Params::{"+name+"="+value+"}");
 		}
-		
 		Cookie[] cookies = req.getCookies();
 		if(cookies != null) {
 			for(Cookie cookie : cookies) {
