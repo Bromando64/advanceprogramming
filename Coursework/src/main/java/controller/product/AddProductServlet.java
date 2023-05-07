@@ -66,16 +66,15 @@ public class AddProductServlet extends HttpServlet {
 		    	response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 		    }else {
 		    	System.out.println("imgerr" + result);
-		    	request.getRequestDispatcher("/Pages/admin_profile.jsp").forward(request, response);
+		    	response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 		    }
 			
 		}else if(result[1] == -1) {
 			System.out.println(result[1]);
-			request.setAttribute("productMessage", "Product Already Exists");
-			request.getRequestDispatcher("/Pages/admin_profile.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 		}else {
 			System.out.println(result[1]);
-			request.getRequestDispatcher("/Pages/admin_profile.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 		}
 		
 	}

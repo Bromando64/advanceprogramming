@@ -43,8 +43,7 @@ public class DeleteProductImageServlet extends HttpServlet {
 			if (result>=0) {
 				response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 			}else {
-				request.setAttribute("updateMessage", "Error Not deleted");
-				request.getRequestDispatcher("Pages/admin_profile.jsp").forward(request, response);
+				response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

@@ -48,8 +48,7 @@ public class UpdateProductServlet extends HttpServlet {
 		if (result == true) {
 			response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 		}else {
-			request.setAttribute("updateMessage", "Error Not updated");
-			request.getRequestDispatcher("Pages/admin_profile.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/Pages/admin_profile.jsp");
 		}
 	}
 

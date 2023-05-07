@@ -134,7 +134,7 @@
 				  <form method="POST" action="${pageContext.request.contextPath}/DeleteProductServlet">
 				    <td>
 				      <input type="hidden" name="productID" value="${product.productID}">
-				      <button type="submit" class="delete-btn">Delete</button>
+				      <button onclick = "removeProductConfirm()" type="submit" class="delete-btn">Delete</button>
 				    </td>
 				  </form>
 				  <td>
@@ -231,6 +231,15 @@
             evt.currentTarget.className += " active";
         }
         document.getElementById("defaultOpen").click();
+        
+        function removeProductConfirm() {
+            if (confirm("Are you sure you want to remove the product?")) {
+                // Call the RemoveAllItemsServlet when the user clicks "OK"
+                window.location.href = "/DeleteProductServlet";
+            } else {
+                // Do nothing when the user clicks "Cancel"
+            }
+        }
     </script>
     
 </body>
