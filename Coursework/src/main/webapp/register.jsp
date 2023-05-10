@@ -8,8 +8,11 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Pages/CSS/signup.css" />
 </head>
 <body style="background-image:url('${pageContext.request.contextPath}/Pages/Images/background.png')">
-
+	<% String errorMessage = (String) request.getAttribute("registerMessage"); %>
 	<div class="card" style="margin-top: 40px;">
+		<% if (errorMessage != null) { %>
+		    <div class="error-message"><%= errorMessage %></div>
+		<% } %>
 	  <span class="title">Sign Up</span>
 	  <form class="form" action="${pageContext.request.contextPath}/UserServlet" method="post" enctype="multipart/form-data">
 	    <div class="group">
