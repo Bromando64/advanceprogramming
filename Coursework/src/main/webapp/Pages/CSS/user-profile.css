@@ -14,19 +14,21 @@ main {
     margin: 2% 10%;
 }
 .profile-image {
-    width: 200px; /* Adjust as needed */
-    height: 200px; /* Adjust as needed */
+    width: 160px; /* Adjust as needed */
+    height: 160px; /* Adjust as needed */
     object-fit: cover;
     border-radius: 50%; /* Optional: makes the image circular */
-    margin-left: 26rem;
+    margin-left: 20rem;
    	border: 2px solid black;
 }
 
+
+}
 .tab {
-    width: 30%;
+    width: 23.1%;
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    border: 2px solid #ccc;
+    background-color: #f8b500;
 }
 
 .tab button {
@@ -41,7 +43,7 @@ main {
 }
 
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #808080;
 }
 
 .tab button.active {
@@ -52,7 +54,7 @@ main {
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
-    border-top: none;
+    margin-top: 10px;
     width: 70%;
 }
 
@@ -75,8 +77,8 @@ td {
 }
 
 th {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #ccc;
+    color: color;
 }
 
 form label {
@@ -98,18 +100,18 @@ form input[type="file"] {
 }
 
 .update {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 12px;
+    background-color: #f8b500;;
+    color: black;
+    padding: 10px 10px;
     /* Reduced the padding to make the button smaller */
     margin: 18px 300px;
     border: none;
     cursor: pointer;
-    width: 50%;
+    width: 22%;
     /* Reduced the width to make the button smaller */
-    float: left;
+    align: center;
     /* Aligns the button to the left */
-    border-radius: 25px;
+    border-radius: 20px;
 }
 
 .update:hover {

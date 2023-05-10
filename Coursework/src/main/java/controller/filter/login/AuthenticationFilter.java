@@ -32,7 +32,7 @@ public class AuthenticationFilter implements Filter{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		
-		//Check if the request is a login or logout request
+		
 		String uri = req.getRequestURI();
 		boolean isLoginJsp = uri.endsWith("login.jsp");
 		boolean isLoginServlet = uri.endsWith("LoginServlet");
